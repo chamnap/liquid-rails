@@ -1,0 +1,120 @@
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:15:12 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 10ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:16:16 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 6ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:17:40 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 5ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:18:32 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 6ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:19:12 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 6ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:19:21 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (16171.1ms)
+Completed 500 Internal Server Error in 16177ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:19:39 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (2919.8ms)
+Completed 500 Internal Server Error in 2925ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:19:53 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (12947.7ms)
+Completed 500 Internal Server Error in 12953ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:20:08 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (25508.6ms)
+Completed 500 Internal Server Error in 25514ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:21:43 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (41615.6ms)
+Completed 500 Internal Server Error in 41621ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:22:29 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (1116.4ms)
+Completed 500 Internal Server Error in 1122ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:22:47 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (1038.7ms)
+Completed 500 Internal Server Error in 1044ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:22:58 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (2895.2ms)
+Completed 500 Internal Server Error in 2900ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:23:14 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (1328.6ms)
+Completed 500 Internal Server Error in 1334ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:23:53 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (973.5ms)
+Completed 500 Internal Server Error in 978ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:24:12 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (1084.3ms)
+Completed 500 Internal Server Error in 1090ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:24:21 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (30668.5ms)
+Completed 500 Internal Server Error in 30674ms
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:25:01 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (2861.1ms)
+Completed 200 OK in 2871ms (Views: 2871.0ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:25:23 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (7431.7ms)
+Completed 200 OK in 7439ms (Views: 7438.7ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:26:42 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (1.3ms)
+Completed 200 OK in 1447109ms (Views: 18.4ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 17:50:52 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (762258.0ms)
+Completed 200 OK in 765429ms (Views: 762269.2ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:05:27 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.7ms)
+Completed 200 OK in 9ms (Views: 9.1ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:06:08 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.6ms)
+Completed 200 OK in 6ms (Views: 5.6ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:06:08 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:06:58 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.7ms)
+Completed 200 OK in 7ms (Views: 6.3ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:06:58 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.6ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:06:58 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:11:23 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.7ms)
+Completed 200 OK in 7ms (Views: 6.5ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:11:23 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2014-08-15 18:11:23 +0700
+Processing by HomeController#index as HTML
+  Rendered home/index.liquid within layouts/application (0.1ms)
+Completed 200 OK in 1ms (Views: 0.5ms)
