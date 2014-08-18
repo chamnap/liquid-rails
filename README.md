@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/yoolk/liquid-rails.svg?branch=master)](https://travis-ci.org/yoolk/liquid-rails)[![Coverage Status](https://coveralls.io/repos/yoolk/liquid-rails/badge.png)](https://coveralls.io/r/yoolk/liquid-rails)
 # Liquid::Rails
 
 Liquid support in Rails. It allows you to render .liquid templates with layout and partial.
