@@ -21,11 +21,11 @@ Or install it yourself as:
 
 In order to render with layout, in your layout file `app/views/layouts/application.liquid`, put this:
 
-```ruby
+```html
 {{ content_for_layout }}
 ```
 
-```ruby
+```html
 # It will render app/views/home/_partial.liquid when the current controller is `HomeController`.
 {% include 'partial' %}
 
