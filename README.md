@@ -1,13 +1,13 @@
-[![Build Status](https://travis-ci.org/yoolk/liquid-rails.svg?branch=master)](https://travis-ci.org/yoolk/liquid-rails)[![Coverage Status](https://coveralls.io/repos/yoolk/liquid-rails/badge.png?branch=master)](https://coveralls.io/r/yoolk/liquid-rails?branch=master)
-# Liquid::Rails
+[![Build Status](https://travis-ci.org/yoolk/liquid_view.svg?branch=master)](https://travis-ci.org/yoolk/liquid_view)[![Coverage Status](https://coveralls.io/repos/yoolk/liquid_view/badge.png?branch=master)](https://coveralls.io/r/yoolk/liquid_view?branch=master)
+# LiquidView
 
-Liquid support in Rails. It allows you to render `.liquid` templates with layout and partial support.
+It allows you to render `.liquid` templates with layout and partial support.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'liquid-rails'
+    gem 'liquid_view'
 
 And then execute:
 
@@ -15,7 +15,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install liquid-rails
+    $ gem install liquid_view
 
 ## Usage
 

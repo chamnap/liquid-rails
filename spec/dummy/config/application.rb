@@ -5,7 +5,7 @@ require "action_controller/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "liquid-rails"
+require "liquid_view"
 
 module Dummy
   class Application < Rails::Application

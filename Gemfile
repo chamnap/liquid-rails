@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in liquid-rails.gemspec
+# Specify your gem's dependencies in liquid_view.gemspec
 gemspec
 
 gem 'rspec-rails', '~> 2.14.2'
