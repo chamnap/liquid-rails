@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :set_book
+  before_filter :set_book
 
   def index
     render layout: false
