@@ -7,7 +7,7 @@ It allows you to render `.liquid` templates with layout and partial support.
 
 Add this line to your application's Gemfile:
 
-    gem 'liquid_view'
+    gem 'liquid-rails'
 
 And then execute:
 
@@ -15,7 +15,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install liquid_view
+    $ gem install liquid-rails
 
 ## Usage
 
