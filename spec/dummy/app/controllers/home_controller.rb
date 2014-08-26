@@ -14,6 +14,9 @@ class HomeController < ApplicationController
   def index_partial_with_full_path
   end
 
+  def index_with_filter
+  end
+
   private
 
     def set_book

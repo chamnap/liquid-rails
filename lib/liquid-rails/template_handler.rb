@@ -7,7 +7,8 @@ module Liquid
       end
 
       def initialize(view)
-        @view = view
+        @view       = view
+        @controller = @view.controller
       end
 
       def render(template, local_assigns={})
@@ -18,7 +19,16 @@ module Liquid
         assigns.merge!(local_assigns.stringify_keys)
 
         liquid = Liquid::Template.parse(template)
-        liquid.render(assigns, registers: { view: @view, controller: @view.controller })
+
+        liquid.render(assigns, filters: filters, registers: { view: @view, controller: @controller })
+      end
+
+      def filters
+        if @controller.respond_to?(:liquid_filters, true)
+          @controller.send(:liquid_filters)
+        else
+          [@controller._helpers]
+        end
       end
 
       def compilable?

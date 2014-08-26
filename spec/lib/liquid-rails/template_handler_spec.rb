@@ -36,4 +36,18 @@ describe 'Request', type: :feature do
       expect(page.body).to eq "Application Layout\nLiquid on Rails\n\nHome Partial\nShared Partial"
     end
   end
+
+  context 'render with filter' do
+    it 'renders with helper' do
+      visit '/index_with_filter'
+
+      expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis...")
+    end
+
+    it 'renders with helper' do
+      visit '/index_without_filter'
+
+      expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis is a long section of text")
+    end
+  end
 end
