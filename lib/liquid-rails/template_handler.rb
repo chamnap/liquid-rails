@@ -18,7 +18,7 @@ module Liquid
         assigns.merge!(local_assigns.stringify_keys)
 
         liquid = Liquid::Template.parse(template)
-        liquid.render(assigns, registers: { view: @view })
+        liquid.render(assigns, registers: { view: @view, controller: @view.controller })
       end
 
       def compilable?

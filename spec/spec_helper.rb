@@ -16,6 +16,9 @@ require 'liquid-rails'
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+
+Liquid::Template.error_mode = :strict
+
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
