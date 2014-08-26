@@ -1,0 +1,1 @@
+Liquid::Template.register_filter(Liquid::Rails::AssetUrlFilter)
