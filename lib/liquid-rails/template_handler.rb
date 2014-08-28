@@ -9,6 +9,7 @@ module Liquid
       def initialize(view)
         @view       = view
         @controller = @view.controller
+        @helper     = ActionController::Base.helpers
       end
 
       def render(template, local_assigns={})
@@ -20,7 +21,7 @@ module Liquid
 
         liquid = Liquid::Template.parse(template)
 
-        liquid.render(assigns, filters: filters, registers: { view: @view, controller: @controller })
+        liquid.render(assigns, filters: filters, registers: { view: @view, controller: @controller, helper: @helper })
       end
 
       def filters
