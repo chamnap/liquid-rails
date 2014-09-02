@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-class AssetUrlFilterKlass
-  include Liquid::Rails::AssetUrlFilter
+class AssetTagFilterKlass
+  include Liquid::Rails::AssetTagFilter
 end
 
 module Liquid
   module Rails
-    describe AssetUrlFilter do
-      subject { AssetUrlFilterKlass.new }
+    describe AssetTagFilter do
+      subject { AssetTagFilterKlass.new }
 
       it { should delegate(:audio_tag).to(:h) }
       it { should delegate(:auto_discovery_link_tag).to(:h) }

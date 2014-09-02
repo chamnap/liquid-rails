@@ -15,4 +15,4 @@ module Liquid
   end
 end
 
-Dir[File.dirname(__FILE__) + '/{tags}/*.rb'].each { |f| require f }
+Dir[File.dirname(__FILE__) + '/{filters,tags}/*.rb'].each { |f| require f }

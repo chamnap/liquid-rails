@@ -2,20 +2,36 @@ module Liquid
   module Rails
     module AssetUrlFilter
       delegate \
-                :audio_tag,
-                :auto_discovery_link_tag,
-                :favicon_link_tag,
-                :image_alt,
-                :image_tag,
-                :javascript_include_tag,
-                :stylesheet_link_tag,
-                :video_tag,
+                :asset_path,
+                :asset_url,
+
+                :audio_path,
+                :audio_url,
+
+                :font_path,
+                :font_url,
+
+                :image_path,
+                :image_url,
+
+                :javascript_path,
+                :javascript_url,
+
+                :stylesheet_path,
+                :stylesheet_url,
+
+                :video_path,
+                :video_url,
 
                 to: :h
 
-      def h
-        @h ||= ActionController::Base.helpers
-      end
+      private
+
+        def h
+          @h ||= @context.registers[:helper]
+        end
     end
   end
 end
+
+Liquid::Template.register_filter(Liquid::Rails::AssetUrlFilter)
