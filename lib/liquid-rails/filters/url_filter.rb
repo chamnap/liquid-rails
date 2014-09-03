@@ -15,7 +15,7 @@ module Liquid
       end
 
       def current_page?(path)
-        @context.registers[:helper].current_page?(path.to_s)
+        @context.registers[:view].current_page?(path.to_s)
       end
     end
   end
