@@ -3,8 +3,8 @@ def view
 
   @view                 = ActionView::Base.new
   @controller           = ApplicationController.new
-  @request              = build_request
-  @response             = build_response
+  @request              = ActionController::TestRequest.new
+  @response             = ActionController::TestResponse.new
   @response.request     = @request
   @controller.request   = @request
   @controller.response  = @response
