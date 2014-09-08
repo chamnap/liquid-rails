@@ -22,6 +22,7 @@ Liquid::Template.error_mode = :strict
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
+require 'fixtures/poro'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
