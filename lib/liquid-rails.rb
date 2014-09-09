@@ -8,6 +8,12 @@ module Liquid
 
     autoload :Drop,             'liquid-rails/drops/drop'
     autoload :CollectionDrop,   'liquid-rails/drops/collection_drop'
+
+    def self.setup_drop(base)
+      base.class_eval do
+        include Liquid::Rails::Droppable
+      end
+    end
   end
 end
 

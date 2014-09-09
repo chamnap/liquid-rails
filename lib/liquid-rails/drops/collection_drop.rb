@@ -7,7 +7,7 @@ module Liquid
         define_method(name) do
           raise ArgumentError, "#{objects.klass.name} doesn't define scope: #{name}" unless objects.respond_to?(name)
 
-          Liquid::Rails::Drop.dropify(objects.send(name))
+          new(objects.send(name))
         end
       end
 
@@ -17,7 +17,10 @@ module Liquid
       delegate *array_methods, to: :dropped_collection
 
       def initialize(objects, options={})
+        options.assert_valid_keys(:with)
+
         @objects    = objects
+        @drop_class = options[:with]
       end
 
       def dropped_collection
@@ -29,12 +32,17 @@ module Liquid
       end
       alias_method :is_a?, :kind_of?
 
+      def inspect
+        "#<#{self.class.name} @objects: #{objects.inspect}>"
+      end
+
       protected
 
         attr_reader :objects
+        attr_reader :drop_class
 
         def drop_item(item)
-          liquid_drop_class = Liquid::Rails::Drop.drop_for(item)
+          liquid_drop_class = drop_class || item.drop_class
           liquid_drop_class.new(item)
         end
     end

@@ -1,4 +1,6 @@
 class Model
+  include Liquid::Rails::Droppable
+
   def initialize(hash={})
     @attributes = hash
   end

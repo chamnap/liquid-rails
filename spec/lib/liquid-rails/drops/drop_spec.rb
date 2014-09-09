@@ -9,29 +9,7 @@ module Liquid
 
       context 'attributes' do
         it '_attributes' do
-          expect(profile_drop.class._attributes).to eq([:id, :name, :description])
-        end
-
-        it '#id as integer' do
-          profile      = Profile.new(id: 22234555, name: 'Name 1')
-          profile_drop = ProfileDrop.new(profile)
-
-          expect(profile_drop.id).to eq(22234555)
-        end
-
-        it '#id as string' do
-          profile      = Profile.new(id: '22234555', name: 'Name 1')
-          profile_drop = ProfileDrop.new(profile)
-
-          expect(profile_drop.id).to eq('22234555')
-        end
-
-        it '#id as string when it\'s not integer or string' do
-          profile      = Profile.new(id: BSON::Id.new(22234555), name: 'Name 1')
-          profile_drop = ProfileDrop.new(profile)
-
-          expect(profile_drop.id).to eq('22234555')
-          expect(profile_drop.id).to be_instance_of(String)
+          expect(profile_drop.class._attributes).to eq([:name, :description])
         end
 
         it '#name and #description' do
@@ -40,21 +18,20 @@ module Liquid
         end
 
         it '#before_method' do
-          expect(profile_drop.before_method(:id)).to eq(profile_drop.id)
           expect(profile_drop.before_method(:name)).to eq(profile_drop.name)
           expect(profile_drop.before_method(:description)).to eq(profile_drop.description)
         end
       end
 
-      context '#drop_for' do
+      context '#drop_class_for' do
         it 'existing drop' do
-          drop_class = Liquid::Rails::Drop.drop_for(profile)
+          drop_class = Liquid::Rails::Drop.drop_class_for(profile)
 
           expect(drop_class).to eq(profile_drop.class)
         end
 
         it 'not-existing drop' do
-          drop_class = Liquid::Rails::Drop.drop_for(model)
+          drop_class = Liquid::Rails::Drop.drop_class_for(model)
 
           expect(drop_class).to eq(nil)
         end
@@ -62,7 +39,7 @@ module Liquid
         it 'array drop' do
           array = [1, 2, 3]
 
-          expect(Liquid::Rails::Drop.drop_for(array)).to eq(Liquid::Rails::CollectionDrop)
+          expect(Liquid::Rails::Drop.drop_class_for(array)).to eq(Liquid::Rails::CollectionDrop)
         end
       end
 

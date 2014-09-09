@@ -13,6 +13,14 @@ module Liquid
         template_path = ::Rails.root.join('app/views')
         Liquid::Template.file_system = Liquid::Rails::FileSystem.new(template_path)
       end
+
+      initializer 'liquid-rails.setup_drop' do |app|
+        [:active_record, :mongoid].each do |orm|
+          ActiveSupport.on_load orm do
+            Liquid::Rails.setup_drop self
+          end
+        end
+      end
     end
   end
 end
