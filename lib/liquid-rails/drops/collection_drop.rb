@@ -20,7 +20,7 @@ module Liquid
         options.assert_valid_keys(:with)
 
         @objects    = objects
-        @drop_class = options[:with]
+        @drop_class = options[:with].is_a?(String) ? options[:with].safe_constantize : options[:with]
       end
 
       def dropped_collection
