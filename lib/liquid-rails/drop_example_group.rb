@@ -1,7 +1,11 @@
+module Liquid::Rails::Matchers
+end
+
 module Liquid
   module Rails
     module DropExampleGroup
       extend ActiveSupport::Concern
+      include Liquid::Rails::Matchers
 
       included do
         metadata[:type] = :drop
@@ -11,9 +15,9 @@ module Liquid
 
       RSpec.configure do |config|
         if RSpec::Core::Version::STRING.starts_with?('3')
-          config.include DropExampleGroup, type: :drop, file_path: %r(spec/drops)
+          config.include Liquid::Rails::DropExampleGroup, type: :drop, file_path: %r(spec/drops)
         else
-          config.include DropExampleGroup, type: :drop, example_group: { file_path: %r{spec/drops} }
+          config.include Liquid::Rails::DropExampleGroup, type: :drop, example_group: { file_path: %r{spec/drops} }
         end
       end
     end
