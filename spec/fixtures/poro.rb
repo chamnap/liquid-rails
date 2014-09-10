@@ -35,29 +35,21 @@ class ProfileDrop < Liquid::Rails::Drop
   attributes :name, :description
 end
 
-Post = Class.new(Model)
+Post    = Class.new(Model)
 Comment = Class.new(Model)
 
 PostDrop = Class.new(Liquid::Rails::Drop) do
   attributes :title, :body, :id
   has_many :comments
+  has_many :recomments, with: 'ReCommentDrop', class_name: 'CommentsDrop'
 end
 
 CommentDrop = Class.new(Liquid::Rails::Drop) do
   attributes :id, :body
   belongs_to :post
+  belongs_to :repost, class_name: 'RePostDrop'
 end
 
-module BSON
-  class Id
-    attr_reader :id
-
-    def initialize(id)
-      @id = id
-    end
-
-    def to_s
-      @id.to_s
-    end
-  end
-end
+RePostDrop    = Class.new(Liquid::Rails::Drop)
+ReCommentDrop = Class.new(Liquid::Rails::Drop)
+CommentsDrop  = Class.new(Liquid::Rails::CollectionDrop)

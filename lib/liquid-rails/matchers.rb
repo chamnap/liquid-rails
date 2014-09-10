@@ -1,0 +1,115 @@
+require 'liquid-rails/drop_example_group'
+
+module Liquid
+  module Rails
+    module Matchers
+      def have_attribute(name)
+        AttributeMatcher.new(name)
+      end
+
+      def have_many(name)
+        AssociationMatcher.new(name, type: :has_many)
+      end
+
+      def belongs_to(name)
+        AssociationMatcher.new(name, type: :belongs_to)
+      end
+
+      class AttributeMatcher
+        attr_reader :name, :actual
+
+        def initialize(name)
+          @name = name
+        end
+
+        def matches?(actual)
+          @actual = actual
+
+          attributes.include?(name)
+        end
+
+        def description
+          "have attribute #{name}"
+        end
+
+        def failure_message
+          %Q{expected #{actual.inspect} to include "#{name}"}
+        end
+
+        def failure_message_when_negated
+          %Q{expected #{actual.inspect} not to include "#{name}"}
+        end
+
+        private
+
+          def drop
+            if actual.is_a?(Class)
+              actual
+            else
+              actual.class
+            end
+          end
+
+          def attributes
+            drop._attributes
+          end
+      end
+
+      class AssociationMatcher
+        attr_reader :name, :actual, :options
+
+        def initialize(name, options)
+          @name    = name
+          @options = options
+        end
+
+        def matches?(actual)
+          @actual = actual
+
+          association = associations[name]
+          result = association.present? && association[:type] == options[:type]
+          result = result && association[:options][:with] == options[:with]             if options[:with]
+          result = result && association[:options][:class_name] == options[:class_name] if options[:class_name]
+
+          result
+        end
+
+        def with(class_name)
+          @options[:with] = class_name
+          self
+        end
+
+        def class_name(class_name)
+          @options[:class_name] = class_name
+          self
+        end
+
+        def description
+          "have association #{name}"
+        end
+
+        def failure_message
+          %Q{expected #{actual.inspect} to include "#{name}" as :#{options[:type]} association}
+        end
+
+        def failure_message_when_negated
+          %Q{expected #{actual.inspect} not to include "#{name}" as :#{options[:type]} association}
+        end
+
+        private
+
+          def drop
+            if actual.is_a?(Class)
+              actual
+            else
+              actual.class
+            end
+          end
+
+          def associations
+            drop._associations
+          end
+      end
+    end
+  end
+end

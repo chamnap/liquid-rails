@@ -55,8 +55,8 @@ module Liquid
         end
 
         context 'has_many' do
-          it '#has_many' do
-            expect(@post_drop.class._associations).to eq({:comments=>{:type=>:has_many, :options=>{}}})
+          it '#has_many :comments' do
+            expect(@post_drop.class._associations[:comments]).to eq({:type=>:has_many, :options=>{}})
           end
 
           it 'returns as CollectionDrop object' do
@@ -66,7 +66,7 @@ module Liquid
 
         context 'belongs_to' do
           it '#belongs_to' do
-            expect(@comment_drop.class._associations).to eq({:post=>{:type=>:belongs_to, :options=>{}}})
+            expect(@comment_drop.class._associations[:post]).to eq({:type=>:belongs_to, :options=>{}})
           end
 
           it 'returns as PostDrop object' do

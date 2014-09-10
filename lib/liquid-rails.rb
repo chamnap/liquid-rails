@@ -1,5 +1,6 @@
 require 'liquid-rails/version'
 require 'liquid'
+require 'active_support/concern'
 
 module Liquid
   module Rails
