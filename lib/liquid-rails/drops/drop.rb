@@ -19,7 +19,7 @@ module Liquid
           next if method_defined?(attr)
 
           define_method(attr) do
-            object.read_attribute_for_serialization(attr)
+            object.send(attr)
           end
         end
       end

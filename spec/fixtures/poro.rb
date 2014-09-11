@@ -5,14 +5,6 @@ class Model
     @attributes = hash
   end
 
-  def read_attribute_for_serialization(name)
-    if name == :id || name == 'id'
-      id
-    else
-      @attributes[name]
-    end
-  end
-
   def id
     @attributes[:id] || @attributes['id'] || object_id
   end
