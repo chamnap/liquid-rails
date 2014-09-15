@@ -80,7 +80,8 @@ module Liquid
             return value if value
 
             association = object.send(attr)
-            instance_variable_set("@_#{attr}", Liquid::Rails::Drop.dropify(association, options))
+            value       = association.nil? ? nil : Liquid::Rails::Drop.dropify(association, options)
+            instance_variable_set("@_#{attr}", value)
           end
 
           self._associations[attr] = { type: type, options: options }

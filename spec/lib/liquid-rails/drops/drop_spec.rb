@@ -72,6 +72,13 @@ module Liquid
           it 'returns as PostDrop object' do
             expect(@comment_drop.post).to be_instance_of(::PostDrop)
           end
+
+          it 'returns nil when the source object is nil' do
+            @comment.post = nil
+            @comment_drop = ::CommentDrop.new(@comment)
+
+            expect(@comment_drop.post).to be_nil
+          end
         end
       end
     end
