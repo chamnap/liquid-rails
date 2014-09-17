@@ -1,17 +1,28 @@
 module Liquid
   module Rails
     class CollectionDrop < ::Liquid::Drop
-      include Enumerable
 
-      def self.scope(name)
-        define_method(name) do
-          raise ArgumentError, "#{objects.klass.name} doesn't define scope: #{name}" unless objects.respond_to?(name)
-
-          new(objects.send(name))
-        end
+      class << self
+        attr_accessor :_scopes
       end
 
-      delegate :each, to: :@objects
+      def self.inherited(base)
+        base._scopes = []
+      end
+
+      def self.scope(*scope_names)
+        @_scopes.concat scope_names
+
+        scope_names.each do |scope_name|
+          define_method(scope_name) do
+            value = instance_variable_get("@_#{scope_name}")
+            return value if value
+
+            raise ArgumentError, "#{objects.class.name} doesn't define scope: #{scope_name}" unless objects.respond_to?(scope_name)
+            instance_variable_set("@_#{scope_name}", self.class.new(objects.send(scope_name)))
+          end
+        end
+      end
 
       array_methods = Array.instance_methods - Object.instance_methods
       delegate *array_methods, to: :dropped_collection
@@ -32,8 +43,26 @@ module Liquid
       end
       alias_method :is_a?, :kind_of?
 
+      ## :[] is invoked by parser before the actual. However, this method has the same name as array method.
+      ## Override this, so it will work for both cases.
+      ## => post_drop.comments[0]
+      ## => post_drop
+      def [](method)
+        if method.is_a?(Integer)
+          dropped_collection.at(method)
+        else
+          public_send(method)
+        end
+      end
+
+      ## Need to override this. Don't understand too, otherwise it will return an array of drop objects.
+      ## Need to return self so that we can do chaining.
+      def to_liquid
+        self
+      end
+
       def inspect
-        "#<#{self.class.name} @objects: #{objects.inspect}>"
+        "#<#{self.class.name} of #{drop_class} for #{objects.inspect}>"
       end
 
       protected

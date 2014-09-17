@@ -15,6 +15,10 @@ module Liquid
         AssociationMatcher.new(name, type: :belongs_to)
       end
 
+      def have_scope(name)
+        ScopeMatcher.new(name)
+      end
+
       class AttributeMatcher
         attr_reader :name, :actual
 
@@ -33,11 +37,11 @@ module Liquid
         end
 
         def failure_message
-          %Q{expected #{actual.inspect} to include "#{name}"}
+          %Q{expected #{actual.inspect} to define "#{name}" as attribute}
         end
 
         def failure_message_when_negated
-          %Q{expected #{actual.inspect} not to include "#{name}"}
+          %Q{expected #{actual.inspect} not to define "#{name}" as attribute}
         end
 
         private
@@ -89,11 +93,11 @@ module Liquid
         end
 
         def failure_message
-          %Q{expected #{actual.inspect} to include "#{name}" as :#{options[:type]} association}
+          %Q{expected #{actual.inspect} to define "#{name}" as :#{options[:type]} association}
         end
 
         def failure_message_when_negated
-          %Q{expected #{actual.inspect} not to include "#{name}" as :#{options[:type]} association}
+          %Q{expected #{actual.inspect} not to define "#{name}" as :#{options[:type]} association}
         end
 
         private
@@ -108,6 +112,46 @@ module Liquid
 
           def associations
             drop._associations
+          end
+      end
+
+      class ScopeMatcher
+        attr_reader :name, :actual
+
+        def initialize(name)
+          @name = name
+        end
+
+        def matches?(actual)
+          @actual = actual
+
+          scopes.include?(name)
+        end
+
+        def description
+          "have scope #{name}"
+        end
+
+        def failure_message
+          %Q{expected #{actual.inspect} to define "#{name}" as scope}
+        end
+
+        def failure_message_when_negated
+          %Q{expected #{actual.inspect} not to define "#{name}" as scope}
+        end
+
+        private
+
+          def drop
+            if actual.is_a?(Class)
+              actual
+            else
+              actual.class
+            end
+          end
+
+          def scopes
+            drop._scopes
           end
       end
     end
