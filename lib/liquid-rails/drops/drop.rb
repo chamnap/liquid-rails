@@ -19,7 +19,7 @@ module Liquid
           next if method_defined?(attr)
 
           define_method(attr) do
-            object.send(attr)
+            object.send(attr) if object.respond_to?(attr, true)
           end
         end
       end

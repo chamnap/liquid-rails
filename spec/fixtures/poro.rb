@@ -9,6 +9,15 @@ class Model
     @attributes[:id] || @attributes['id'] || object_id
   end
 
+  def respond_to?(method, include_private=false)
+    return true if @attributes.key?(method)
+    super
+  end
+
+  def respond_to_missing?(method, include_private=false)
+    @attributes.key?(method) || super
+  end
+
   def method_missing(meth, *args)
     if meth.to_s =~ /^(.*)=$/
       @attributes[$1.to_sym] = args[0]

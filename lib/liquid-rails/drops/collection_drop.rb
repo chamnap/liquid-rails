@@ -26,12 +26,21 @@ module Liquid
 
       array_methods = Array.instance_methods - Object.instance_methods
       delegate *array_methods, to: :dropped_collection
+      delegate :total_count, :total_pages, to: :objects
 
       def initialize(objects, options={})
         options.assert_valid_keys(:with)
 
         @objects    = objects
         @drop_class = options[:with].is_a?(String) ? options[:with].safe_constantize : options[:with]
+      end
+
+      def page(number)
+        self.class.new(objects.page(number))
+      end
+
+      def per(number)
+        self.class.new(objects.per(number))
       end
 
       def dropped_collection
@@ -45,8 +54,8 @@ module Liquid
 
       ## :[] is invoked by parser before the actual. However, this method has the same name as array method.
       ## Override this, so it will work for both cases.
-      ## => post_drop.comments[0]
-      ## => post_drop
+      ## {{ post_drop.comments[0] }}
+      ## {{ post_drop }}
       def [](method)
         if method.is_a?(Integer)
           dropped_collection.at(method)
@@ -55,7 +64,7 @@ module Liquid
         end
       end
 
-      ## Need to override this. Don't understand too, otherwise it will return an array of drop objects.
+      ## Need to override this. I don't understand too, otherwise it will return an array of drop objects.
       ## Need to return self so that we can do chaining.
       def to_liquid
         self

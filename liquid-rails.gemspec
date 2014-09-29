@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'rails',  '>= 3.2'
-  spec.add_dependency 'liquid', '~> 3.0.0.rc1'
+  spec.add_dependency 'rails',    '>= 3.2'
+  spec.add_dependency 'liquid',   '~> 3.0.0.rc1'
+  spec.add_dependency 'kaminari', '~> 0.16.1'
 end
