@@ -31,8 +31,8 @@ module Liquid
       def initialize(objects, options={})
         options.assert_valid_keys(:with)
 
-        @objects    = objects
-        @drop_class = options[:with].is_a?(String) ? options[:with].safe_constantize : options[:with]
+        @objects         = objects
+        @drop_class_name = options[:with]
       end
 
       def page(number)
@@ -77,7 +77,10 @@ module Liquid
       protected
 
         attr_reader :objects
-        attr_reader :drop_class
+
+        def drop_class
+          @drop_class ||= @drop_class_name.is_a?(String) ? @drop_class_name.safe_constantize : @drop_class_name
+        end
 
         def drop_item(item)
           liquid_drop_class = drop_class || item.drop_class
