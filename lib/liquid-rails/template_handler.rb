@@ -20,7 +20,8 @@ module Liquid
         assigns.merge!(local_assigns.stringify_keys)
 
         liquid = Liquid::Template.parse(template)
-        liquid.render!(assigns, filters: filters, registers: { view: @view, controller: @controller, helper: @helper })
+        render_method = (::Rails.env.development? || ::Rails.env.test?) ? :render! : :render
+        liquid.send(render_method, assigns, filters: filters, registers: { view: @view, controller: @controller, helper: @helper })
       end
 
       def filters
