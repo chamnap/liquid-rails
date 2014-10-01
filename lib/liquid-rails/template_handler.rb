@@ -15,7 +15,11 @@ module Liquid
       def render(template, local_assigns={})
         @view.controller.headers['Content-Type'] ||= 'text/html; charset=utf-8'
 
-        assigns = @view.assigns
+        assigns = if @controller.respond_to?(:liquid_assigns, true)
+          @controller.send(:liquid_assigns)
+        else
+          @view.assigns
+        end
         assigns['content_for_layout'] = @view.content_for(:layout) if @view.content_for?(:layout)
         assigns.merge!(local_assigns.stringify_keys)
 
