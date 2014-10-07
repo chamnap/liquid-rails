@@ -23,23 +23,35 @@ module Liquid
         end
       end
 
-      context '#drop_class_for' do
-        it 'existing drop' do
-          drop_class = Liquid::Rails::Drop.drop_class_for(profile)
+      context '#dropify' do
+        context 'single' do
+          it "instantitates with its inferred drop class" do
+            drop = Liquid::Rails::Drop.dropify(profile)
 
-          expect(drop_class).to eq(profile_drop.class)
+            expect(drop).to be_instance_of(ProfileDrop)
+          end
+
+          it "instantitates with `Liquid::Rails::Drop` when its inferred drop class doesn't exist" do
+            drop = Liquid::Rails::Drop.dropify(Model.new)
+
+            expect(drop).to be_instance_of(Liquid::Rails::Drop)
+          end
+
+          it "instantitates with the caller drop class" do
+            drop = ReProfileDrop.dropify(profile)
+            expect(drop).to be_instance_of(ReProfileDrop)
+
+            drop = ProfileDrop.dropify(profile)
+            expect(drop).to be_instance_of(ProfileDrop)
+          end
         end
 
-        it 'not-existing drop' do
-          drop_class = Liquid::Rails::Drop.drop_class_for(model)
+        context 'array' do
+          it "instantitates with collection drop class" do
+            array = [1, 2, 3]
 
-          expect(drop_class).to eq(nil)
-        end
-
-        it 'array drop' do
-          array = [1, 2, 3]
-
-          expect(Liquid::Rails::Drop.drop_class_for(array)).to eq(Liquid::Rails::CollectionDrop)
+            expect(Liquid::Rails::Drop.dropify(array)).to be_instance_of(Liquid::Rails::CollectionDrop)
+          end
         end
       end
 
@@ -50,6 +62,9 @@ module Liquid
           @post.comments  = [@comment]
           @comment.post   = @post
 
+          @post.recomments= [@comment]
+          @comment.repost = @post
+
           @post_drop      = ::PostDrop.new(@post)
           @comment_drop   = ::CommentDrop.new(@comment)
         end
@@ -59,8 +74,16 @@ module Liquid
             expect(@post_drop.class._associations[:comments]).to eq({:type=>:has_many, :options=>{}})
           end
 
-          it 'returns as CollectionDrop object' do
+          it '#comments returns as CollectionDrop object' do
             expect(@post_drop.comments).to be_instance_of(Liquid::Rails::CollectionDrop)
+          end
+
+          it '#recomments returns as CommentsDrop object' do
+            expect(@post_drop.recomments).to be_instance_of(::CommentsDrop)
+          end
+
+          it '#recomments returns as ReCommentDrop object' do
+            expect(@post_drop.recomments[0]).to be_instance_of(::ReCommentDrop)
           end
         end
 
@@ -69,8 +92,12 @@ module Liquid
             expect(@comment_drop.class._associations[:post]).to eq({:type=>:belongs_to, :options=>{}})
           end
 
-          it 'returns as PostDrop object' do
+          it '#post returns as PostDrop object' do
             expect(@comment_drop.post).to be_instance_of(::PostDrop)
+          end
+
+          it '#repost returns as PostDrop object' do
+            expect(@comment_drop.repost).to be_instance_of(::RePostDrop)
           end
 
           it 'returns nil when the source object is nil' do
@@ -78,6 +105,12 @@ module Liquid
             @comment_drop = ::CommentDrop.new(@comment)
 
             expect(@comment_drop.post).to be_nil
+          end
+        end
+
+        context '#to_json' do
+          it 'returns hash of attributes' do
+            expect(profile_drop.to_json).to eq(%|{"name":"Name 1","description":"Description 1"}|)
           end
         end
       end

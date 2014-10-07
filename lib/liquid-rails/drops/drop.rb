@@ -24,40 +24,29 @@ module Liquid
         end
       end
 
-      def self.collection_drop_class
-        name = collection_drop_name
-        name.constantize
-      rescue NameError => error
-        raise if name && !error.missing_name?(name)
-        Liquid::Rails::CollectionDrop
-      end
-
-      def self.collection_drop_name
-        plural = object_class_name.pluralize
-        raise NameError if plural == object_class_name
-        "#{plural}Drop"
-      end
-
-      def self.object_class_name
-        raise NameError if name.nil? || name.demodulize !~ /.+Drop$/
-        name.chomp('Drop')
-      end
-
-      def self.dropify(resource, options={})
-        drop_class  = drop_class_for(resource, options[:class_name])
-        drop_class.new(resource, options.except(:class_name))
-      end
-
-      def self.drop_class_for(resource, class_name=nil)
-        if class_name.present?
-          class_name.safe_constantize
-        elsif resource.respond_to?(:to_ary)
-          collection_drop_class
-        elsif self.name != 'Liquid::Rails::Drop'
-          self
+      # By default, `Product` maps to `ProductDrop`.
+      #             Array of products maps to `Liquid::Rails::CollectionDrop`.
+      def self.drop_class_for(resource)
+        if resource.respond_to?(:to_ary)
+          Liquid::Rails::CollectionDrop
         else
-          resource.drop_class
+          if self == Liquid::Rails::Drop
+            resource.drop_class || Liquid::Rails::Drop
+          else
+            self
+          end
         end
+      end
+
+      # Create a drop instance when it cannot be inferred.
+      def self.dropify(resource, options={})
+        drop_class = if options[:class_name]
+          options[:class_name].constantize
+        else
+          drop_class_for(resource)
+        end
+
+        drop_class.new(resource, options.except(:class_name))
       end
 
       def self.belongs_to(*attrs)
@@ -80,22 +69,33 @@ module Liquid
             return value if value
 
             association = object.send(attr)
-            value       = association.nil? ? nil : Liquid::Rails::Drop.dropify(association, options)
-            instance_variable_set("@_#{attr}", value)
+            return nil if association.nil?
+
+            drop_instance = Liquid::Rails::Drop.dropify(association, options)
+            instance_variable_set("@_#{attr}", drop_instance)
           end
 
           self._associations[attr] = { type: type, options: options }
         end
       end
 
+      # Wraps an object in a new instance of the drop.
       def initialize(object, options={})
         @object = object
       end
 
-      def attributes(options = {})
+      def attributes
         @attributes ||= self.class._attributes.dup.each_with_object({}) do |name, hash|
           hash[name.to_s] = send(name)
         end
+      end
+
+      def as_json(options={})
+        attributes.as_json(options)
+      end
+
+      def to_json(options={})
+        as_json.to_json(options)
       end
 
       def before_method(method)

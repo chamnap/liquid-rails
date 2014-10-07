@@ -55,7 +55,7 @@ module Liquid
       ## :[] is invoked by parser before the actual. However, this method has the same name as array method.
       ## Override this, so it will work for both cases.
       ## {{ post_drop.comments[0] }}
-      ## {{ post_drop }}
+      ## {{ post_drop.<other_methods> }}
       def [](method)
         if method.is_a?(Integer)
           dropped_collection.at(method)

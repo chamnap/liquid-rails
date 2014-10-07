@@ -51,6 +51,8 @@ CommentDrop = Class.new(Liquid::Rails::Drop) do
   belongs_to :repost, class_name: 'RePostDrop'
 end
 
+ReProfileDrop = Class.new(Liquid::Rails::Drop)
+PostsDrop     = Class.new(Liquid::Rails::CollectionDrop)
 RePostDrop    = Class.new(Liquid::Rails::Drop)
 ReCommentDrop = Class.new(Liquid::Rails::Drop)
 CommentsDrop  = Class.new(Liquid::Rails::CollectionDrop)
