@@ -1,4 +1,5 @@
 require 'liquid-rails/drop_example_group'
+require 'liquid-rails/tag_example_group'
 
 module Liquid
   module Rails

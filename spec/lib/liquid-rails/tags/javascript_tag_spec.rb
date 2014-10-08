@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Liquid
   module Rails
-    describe JavascriptTag do
+    describe JavascriptTag, type: :tag do
       let(:context) { ::Liquid::Context.new({}, {}, { view: view }) }
 
       it '#crsf_meta_tags' do

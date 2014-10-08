@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Liquid
   module Rails
-    describe GoogleAnalyticsTag do
+    describe GoogleAnalyticsTag, type: :tag do
       let(:context) { ::Liquid::Context.new({}, {}, { view: view }) }
 
       it '#google_analytics' do

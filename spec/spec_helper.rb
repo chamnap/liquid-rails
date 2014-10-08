@@ -9,6 +9,7 @@ if ENV['CI'] || ENV['COVERAGE']
 
   SimpleCov.start do
     add_filter 'drop_example_group.rb'
+    add_filter 'tag_example_group.rb'
     add_filter 'spec'
     add_filter 'gemfiles'
   end
@@ -23,6 +24,7 @@ require 'liquid-rails'
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'liquid-rails/matchers'
 
 Liquid::Template.error_mode = :strict
 

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'liquid-rails/matchers'
 
 describe ProfileDrop, type: :drop do
   include Liquid::Rails::Matchers
