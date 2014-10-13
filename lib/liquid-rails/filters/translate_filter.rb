@@ -4,7 +4,7 @@ module Liquid
       def translate(key, locale = nil, scope = nil)
         locale ||= ::I18n.locale.to_s
 
-        @context.registers[:helper].translate(key.to_s, locale: locale, scope: scope)
+        @context.registers[:view].translate(key.to_s, locale: locale, scope: scope)
       end
     end
   end

@@ -15,7 +15,7 @@ module Liquid
       private
 
         def h
-          @h ||= @context.registers[:helper]
+          @h ||= @context.registers[:view]
         end
     end
   end
