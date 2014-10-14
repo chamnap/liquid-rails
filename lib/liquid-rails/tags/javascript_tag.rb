@@ -1,3 +1,11 @@
+# Returns a JavaScript tag with the content inside.
+#
+# Usage:
+#
+# {% javascript_tag %}
+#   alert('Hello Liquid Rails!');
+# {% endjavascript_tag %}
+
 module Liquid
   module Rails
     class JavascriptTag < ::Liquid::Block
@@ -11,4 +19,4 @@ module Liquid
   end
 end
 
-Liquid::Template.register_tag('javascript', Liquid::Rails::JavascriptTag)
+Liquid::Template.register_tag('javascript_tag', Liquid::Rails::JavascriptTag)

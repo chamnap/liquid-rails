@@ -1,3 +1,9 @@
+# Returns a Google Analytics tag.
+#
+# Usage:
+#
+# {% google_analytics_tag 'UA-XXXXX-X' %}
+
 module Liquid
   module Rails
     class GoogleAnalyticsTag < ::Liquid::Tag
@@ -8,7 +14,7 @@ module Liquid
         if markup =~ Syntax
           @account_id = $1.gsub('\'', '')
         else
-          raise ::Liquid::SyntaxError.new("Syntax Error in 'google_analytics' - Valid syntax: google_analytics <account_id>")
+          raise ::Liquid::SyntaxError.new("Syntax Error in 'google_analytics_tag' - Valid syntax: google_analytics_tag <account_id>")
         end
 
         super
@@ -35,4 +41,4 @@ module Liquid
   end
 end
 
-Liquid::Template.register_tag('google_analytics', Liquid::Rails::GoogleAnalyticsTag)
+Liquid::Template.register_tag('google_analytics_tag', Liquid::Rails::GoogleAnalyticsTag)

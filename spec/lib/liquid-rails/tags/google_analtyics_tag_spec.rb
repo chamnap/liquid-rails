@@ -6,7 +6,7 @@ module Liquid
       let(:context) { ::Liquid::Context.new({}, {}, { view: view }) }
 
       it '#google_analytics' do
-        result = Liquid::Template.parse("{% google_analytics 'UA-XXXXX-X' %}").render(context)
+        result = Liquid::Template.parse("{% google_analytics_tag 'UA-XXXXX-X' %}").render(context)
 
         expect(result).to eq(
         %{
