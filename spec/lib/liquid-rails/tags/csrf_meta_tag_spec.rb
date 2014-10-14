@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Liquid
   module Rails
-    describe CsrfMetaTag, type: :tag do
+    describe CsrfMetaTags, type: :tag do
       let(:context) { ::Liquid::Context.new({}, {}, { view: view }) }
 
       it '#crsf_meta_tags' do

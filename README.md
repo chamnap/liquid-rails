@@ -33,6 +33,33 @@ In order to render with layout, in your layout file `app/views/layouts/applicati
 {% include 'shared/partial' %}
 ```
 
+### Filter
+
+> Filters are simple methods that modify the output of numbers, strings, variables and objects. They are placed within an output tag `{{` `}}` and are separated with a pipe character `|`.
+
+Currently, **Liquid-Rails** adds only the followings:
+
+1. [AssetTagFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/asset_tag_filter.rb)
+2. [AssetUrlFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/asset_url_filter.rb)
+3. [DateFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/date_filter.rb)
+4. [NumberFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/number_filter.rb)
+5. [SanitizeFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/sanitize_filter.rb)
+6. [TextFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/text_filter.rb)
+7. [TranslateFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/translate_filter.rb)
+8. [UrlFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/url_filter.rb)
+9. [MiscFilter](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/filters/misc_filter.rb)
+
+### Tag
+
+> Liquid tags are the programming logic that tells templates what to do. Tags are wrapped in: `{%` `%}`.
+
+Currently, **Liquid-Rails** adds only the followings:
+
+1. [csrf_meta_tags](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/csrf_meta_tag.rb)
+2. [google_analytics_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/google_analytics_tag.rb)
+3. [javascript_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/javascript_tag.rb)
+4. [paginate_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/paginate_tag.rb)
+
 ### Drop Class
 
 > Drops let you provide the user with custom functionality. They are very much like a standard Ruby class, but have all unused and potentially dangerous methods removed. From the user's perspective a drop acts very much like a Hash, though methods are accessed with dot-notation as well as element selection. A drop method cannot be invoked with arguments. Drops are called just-in-time, thus allowing you to lazily load objects.
