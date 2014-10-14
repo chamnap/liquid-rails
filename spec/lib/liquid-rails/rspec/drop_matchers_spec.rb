@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ProfileDrop, type: :drop do
-  include Liquid::Rails::Matchers
+  include Liquid::Rails::Rspec::DropMatchers
 
   it { should have_attribute(:name) }
   it { should have_attribute(:description) }
@@ -9,7 +9,7 @@ describe ProfileDrop, type: :drop do
 end
 
 describe PostDrop, type: :drop do
-  include Liquid::Rails::Matchers
+  include Liquid::Rails::Rspec::DropMatchers
 
   it { should have_many(:comments) }
   it { should_not have_many(:not_found) }
@@ -24,7 +24,7 @@ describe PostDrop, type: :drop do
 end
 
 describe CommentDrop, type: :drop do
-  include Liquid::Rails::Matchers
+  include Liquid::Rails::Rspec::DropMatchers
 
   it { should belongs_to(:post) }
   it { should_not belongs_to(:not_found) }
