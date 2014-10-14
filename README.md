@@ -33,6 +33,24 @@ In order to render with layout, in your layout file `app/views/layouts/applicati
 {% include 'shared/partial' %}
 ```
 
+### Template Rendering
+
+By default, **Liquid-Rails** makes all instance variables from controller available to liquid template. To limit only some instance variables, do this inside your controller:
+
+```ruby
+def liquid_assigns
+  { 'listing' => current_listing, 'content_for_header' => content_for_header, 'current_account' => current_account }
+end
+```
+
+By default, **Liquid-Rails** makes all your helper methods inside your rails app available to liquid template. To limit only some helpers, do this inside your controller:
+
+```ruby
+def liquid_filters
+  []
+end
+```
+
 ### Filter
 
 > Filters are simple methods that modify the output of numbers, strings, variables and objects. They are placed within an output tag `{{` `}}` and are separated with a pipe character `|`.
@@ -55,7 +73,7 @@ Currently, **Liquid-Rails** adds only the followings:
 
 Currently, **Liquid-Rails** adds only the followings:
 
-1. [csrf_meta_tags](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/csrf_meta_tag.rb)
+1. [csrf_meta_tags](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/csrf_meta_tags.rb)
 2. [google_analytics_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/google_analytics_tag.rb)
 3. [javascript_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/javascript_tag.rb)
 4. [paginate_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/paginate_tag.rb)
