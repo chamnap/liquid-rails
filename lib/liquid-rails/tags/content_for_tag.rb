@@ -4,19 +4,19 @@
 #
 # Usage:
 #
-# {% content_for :not_authorized %}
+# {% content_for not_authorized %}
 #   alert('You are not authorized to do that!');
 # {% endcontent_for %}
 #
 # You can then use content_for :not_authorized anywhere in your templates.
 # {% if current_user.nil? %}
-#   {% yield :not_authorized %}
+#   {% yield not_authorized %}
 # {% endif %}
 
 module Liquid
   module Rails
     class ContentForTag < ::Liquid::Block
-      Syntax = /(#{::Liquid::QuotedFragment})\s*(flush\s*(true|false))?/
+      Syntax = /(#{::Liquid::QuotedFragment}+)\s*(flush\s*(true|false))?/
 
       def initialize(tag_name, markup, context)
         super
@@ -43,7 +43,7 @@ end
 module Liquid
   module Rails
     class YieldTag < ::Liquid::Tag
-      Syntax = /(#{::Liquid::QuotedFragment})/
+      Syntax = /(#{::Liquid::QuotedFragment}+)/
 
       def initialize(tag_name, markup, context)
         super
