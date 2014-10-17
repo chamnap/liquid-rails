@@ -76,7 +76,8 @@ Currently, **Liquid-Rails** adds only the followings:
 1. [csrf_meta_tags](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/csrf_meta_tags.rb)
 2. [google_analytics_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/google_analytics_tag.rb)
 3. [javascript_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/javascript_tag.rb)
-4. [paginate_tag](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/paginate_tag.rb)
+4. [paginate](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/paginate_tag.rb)
+4. [content_for](https://github.com/yoolk/liquid-rails/blob/master/lib/liquid-rails/tags/content_for.rb)
 
 ### Drop Class
 

@@ -7,7 +7,6 @@
 module Liquid
   module Rails
     class GoogleAnalyticsTag < ::Liquid::Tag
-
       Syntax = /(#{::Liquid::QuotedFragment}+)?/
 
       def initialize(tag_name, markup, tokens)
