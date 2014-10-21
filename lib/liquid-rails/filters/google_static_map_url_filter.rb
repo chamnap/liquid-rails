@@ -18,6 +18,7 @@ module Liquid
         else
           ''
         end
+        options = options.merge('size' => size)
         querystring = [options.to_query, markers].delete_if { |value| value.blank? }.join('&')
 
         "https://maps.googleapis.com/maps/api/staticmap?#{querystring}"
