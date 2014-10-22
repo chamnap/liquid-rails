@@ -11,7 +11,11 @@ module Liquid
 
           subject {
             if described_class.ancestors.include?(Liquid::Rails::Drop)
-              described_class.new(double)
+              begin
+                described_class.new(double)
+              rescue
+                described_class.new
+              end
             else
               described_class.new([])
             end
