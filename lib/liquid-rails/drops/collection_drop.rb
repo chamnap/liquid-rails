@@ -29,7 +29,7 @@ module Liquid
       delegate :total_count, :total_pages, to: :objects
 
       def initialize(objects, options={})
-        options.assert_valid_keys(:with)
+        options.assert_valid_keys(:with, :scope)
 
         @objects         = objects
         @drop_class_name = options[:with]
