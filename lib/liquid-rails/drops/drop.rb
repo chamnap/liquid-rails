@@ -39,13 +39,12 @@ module Liquid
       end
 
       # Create a drop instance when it cannot be inferred.
-      def self.dropify(wealth, options={})
+      def self.dropify(resource, options={})
         drop_class = if options[:class_name]
           options[:class_name].constantize
         else
-          drop_class_for(wealth)
+          drop_class_for(resource)
         end
-        resource = options[:scope].nil? ? wealth : eval("wealth.#{options[:scope]}")
         drop_class.new(resource, options.except(:class_name))
       end
 
