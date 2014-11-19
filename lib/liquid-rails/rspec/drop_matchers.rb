@@ -87,11 +87,6 @@ module Liquid
             self
           end
 
-          def scope(scope_name)
-            @options[:scope_name] = scope_name
-            self
-          end
-
           def description
             "have association #{name}"
           end
