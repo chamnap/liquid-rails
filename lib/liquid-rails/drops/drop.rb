@@ -45,6 +45,7 @@ module Liquid
         else
           drop_class_for(resource)
         end
+
         drop_class.new(resource, options.except(:class_name))
       end
 
