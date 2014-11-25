@@ -15,7 +15,7 @@ module Liquid
           @controller.params    = {}
           @view.assign_controller(@controller)
           @view.class.send(:include, @controller._helpers)
-          @view.class.send(:include, Rails.application.routes.url_helpers)
+          @view.class.send(:include, ::Rails.application.routes.url_helpers)
         end
 
         def view
