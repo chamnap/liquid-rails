@@ -6,6 +6,12 @@ module Liquid
 
         @context.registers[:view].translate(key.to_s, locale: locale, scope: scope)
       end
+
+      def t(name, vars={})
+        @context.registers[:view].translate(name).gsub(/\{\{(.*?)\}\}/) {
+          "#{vars[$1.strip]}"
+        }
+      end
     end
   end
 end
