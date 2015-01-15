@@ -54,7 +54,7 @@ module Liquid
           pagination['pages']           = page_count
           pagination['items']           = paginated_collection.total_count
           pagination['previous']        = link('&laquo; Previous'.html_safe, current_page-1 ) unless 1 >= current_page
-          pagination['next']            = link('Next &raquo;'.html_safe, current_page+1 )     unless page_count <= current_page+1
+          pagination['next']            = link('Next &raquo;'.html_safe, current_page+1 )     unless page_count < current_page+1
           pagination['parts']           = []
 
           hellip_break = false
