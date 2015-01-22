@@ -2,7 +2,6 @@ module Liquid
   module Rails
     module TextFilter
       delegate \
-                :truncate,
                 :highlight,
                 :excerpt,
                 :pluralize,
