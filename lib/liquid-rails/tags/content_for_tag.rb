@@ -22,8 +22,8 @@ module Liquid
         super
 
         if markup =~ Syntax
-          @identifier = $1.to_s
           @flush = $3
+          @identifier = $1.gsub('\'', '')
         else
           raise SyntaxError.new("Syntax Error - Valid syntax: {% content_for [name] %}")
         end
@@ -31,9 +31,18 @@ module Liquid
 
       def render(context)
         @context = context
+        content  = super.html_safe
 
-        options = @flush == 'true' ? { flush: true } : {}
-        @context.registers[:view].content_for(@identifier, super.html_safe, options)
+        if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 2
+          if @flush == 'true'
+            @context.registers[:view].view_flow.set(@identifier, content) if content
+          else
+            @context.registers[:view].view_flow.append(@identifier, content) if content
+          end
+        else
+          options = @flush == 'true' ? { flush: true } : {}
+          @context.registers[:view].content_for(@identifier, content, options)
+        end
         ''
       end
     end
@@ -49,7 +58,7 @@ module Liquid
         super
 
         if markup =~ Syntax
-          @identifier = $1
+          @identifier = $1.gsub('\'', '')
         else
           raise SyntaxError.new("Syntax Error - Valid syntax: {% yield [name] %}")
         end

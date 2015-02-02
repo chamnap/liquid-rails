@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails',       '~> 4.1.6'
-gem 'rspec-rails', '~> 2.14.2'
+gem 'rails',       '~> 4.1.9'
+gem 'rspec-rails', '~> 3.1.0'
+gem 'guard-rspec', '~> 4.5.0'
 gem 'capybara',    '~> 2.4.1'
 gem 'pry-rails'
 gem 'coveralls'
 gem 'simplecov'
-gem 'guard-rspec'
 
 gemspec path: '../'

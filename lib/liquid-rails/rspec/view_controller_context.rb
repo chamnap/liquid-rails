@@ -7,7 +7,7 @@ module Liquid
         def setup_view_and_controller
           @view                 = ActionView::Base.new
           @controller           = ApplicationController.new
-          @request              = ActionController::TestRequest.new
+          @request              = ActionController::TestRequest.new('PATH_INFO' => '/')
           @response             = ActionController::TestResponse.new
           @response.request     = @request
           @controller.request   = @request

@@ -44,11 +44,11 @@ module Liquid
         end
 
         it '#next' do
-          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.next }}{% endpaginate %}", %|{"title"=>"Next &raquo;", "url"=>"?page=2", "is_link"=>true}|, { 'post' => @post_drop })
+          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.next }}{% endpaginate %}", %|{"title"=>"Next &raquo;", "url"=>"/?page=2", "is_link"=>true}|, { 'post' => @post_drop })
         end
 
         it '#parts' do
-          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.parts }}{% endpaginate %}", %|{"title"=>1, "is_link"=>false, "hellip_break"=>false}{"title"=>2, "url"=>"?page=2", "is_link"=>true}{"title"=>3, "url"=>"?page=3", "is_link"=>true}|, { 'post' => @post_drop })
+          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.parts }}{% endpaginate %}", %|{"title"=>1, "is_link"=>false, "hellip_break"=>false}{"title"=>2, "url"=>"/?page=2", "is_link"=>true}{"title"=>3, "url"=>"/?page=3", "is_link"=>true}|, { 'post' => @post_drop })
         end
       end
 
@@ -80,7 +80,7 @@ module Liquid
         end
 
         it '#previous' do
-          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.previous }}{% endpaginate %}", %|{"title"=>"&laquo; Previous", "url"=>"?page=2", "is_link"=>true}|, { 'post' => @post_drop })
+          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.previous }}{% endpaginate %}", %|{"title"=>"&laquo; Previous", "url"=>"/?page=2", "is_link"=>true}|, { 'post' => @post_drop })
         end
 
         it '#next' do
@@ -88,7 +88,7 @@ module Liquid
         end
 
         it '#parts' do
-          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.parts }}{% endpaginate %}", %|{"title"=>1, "url"=>"?page=1", "is_link"=>true}{"title"=>2, "url"=>"?page=2", "is_link"=>true}{"title"=>3, "is_link"=>false, "hellip_break"=>false}|, { 'post' => @post_drop })
+          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.parts }}{% endpaginate %}", %|{"title"=>1, "url"=>"/?page=1", "is_link"=>true}{"title"=>2, "url"=>"/?page=2", "is_link"=>true}{"title"=>3, "is_link"=>false, "hellip_break"=>false}|, { 'post' => @post_drop })
         end
       end
     end
