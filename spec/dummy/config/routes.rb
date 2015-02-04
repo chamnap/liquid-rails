@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get  '/index_partial',                to: 'home#index_partial'
   get  '/index_partial_with_full_path', to: 'home#index_partial_with_full_path'
+
+  get '/foospace/bar/index_partial',    to: 'foospace/bar#index_partial'
 end
