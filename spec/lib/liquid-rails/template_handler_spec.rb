@@ -35,6 +35,12 @@ describe 'Request', type: :feature do
 
       expect(page.body).to eq "Application Layout\nLiquid on Rails\n\nHome Partial\nShared Partial"
     end
+
+    it 'respects namespace of original template for partials path' do
+      visit '/foospace/bar/index_partial'
+      expect(page.body.strip).to eq("Foospace::BarController\n\nBar Partial")
+    end
+
   end
 
   context 'render with filter' do

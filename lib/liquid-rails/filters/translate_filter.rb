@@ -1,17 +1,12 @@
 module Liquid
   module Rails
     module TranslateFilter
-      def translate(key, locale = nil, scope = nil)
-        locale ||= ::I18n.locale.to_s
+      def translate(key, options={})
+        options = { 'locale' => ::I18n.locale.to_s }.merge(options)
 
-        @context.registers[:view].translate(key.to_s, locale: locale, scope: scope)
+        @context.registers[:view].translate(key.to_s, options.with_indifferent_access)
       end
-
-      def t(name, vars={})
-        @context.registers[:view].translate(name).gsub(/\{\{(.*?)\}\}/) {
-          "#{vars[$1.strip]}"
-        }
-      end
+      alias_method :t, :translate
     end
   end
 end

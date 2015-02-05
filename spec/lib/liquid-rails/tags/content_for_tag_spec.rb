@@ -3,7 +3,13 @@ require 'spec_helper'
 module Liquid
   module Rails
     describe ContentForTag, type: :tag do
-      it 'content_for and yield' do
+      it 'content_for and yield with non-quoted key' do
+        Liquid::Template.parse(%|{% content_for not_authorized0 %}alert('You are not authorized to do that!');{% endcontent_for %}|).render(context)
+
+        expect_template_result(%|{% yield not_authorized0 %}|, "alert('You are not authorized to do that!');")
+      end
+
+      it 'content_for and yield with quoted key' do
         Liquid::Template.parse(%|{% content_for 'not_authorized1' %}alert('You are not authorized to do that!');{% endcontent_for %}|).render(context)
 
         expect_template_result(%|{% yield 'not_authorized1' %}|, "alert('You are not authorized to do that!');")
