@@ -25,7 +25,7 @@ module Liquid
 
       def default_pagination(paginate)
         html = []
-        html << %(<span class="prev">#{link_to(paginate['previous']['title'], paginate['previous']['url'], rel: 'prev')}</span>) if paginate['previous']
+        html << %(<span class="prev"><a href="#{paginate['previous']['url']}" rel="prev">#{paginate['previous']['title']}</a></span>) if paginate['previous']
 
         for part in paginate['parts']
           if part['is_link']
@@ -37,7 +37,7 @@ module Liquid
           end
         end
 
-        html << %(<span class="next">#{link_to(paginate['next']['title'], paginate['next']['url'], rel: 'next')}</span>) if paginate['next']
+        html << %(<span class="next"><a href="#{paginate['next']['url']}" rel="next">#{paginate['next']['title']}</a></span>) if paginate['next']
         html.join(' ')
       end
 
