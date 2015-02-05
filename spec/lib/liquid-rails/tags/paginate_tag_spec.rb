@@ -52,6 +52,18 @@ module Liquid
         end
       end
 
+      context 'second_page' do
+        before(:all) { controller.params[:page] = 2 }
+
+        it '#previous' do
+          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.previous }}{% endpaginate %}", %|{"title"=>"&laquo; Previous", "url"=>"/?page=1", "is_link"=>true}|, { 'post' => @post_drop })
+        end
+
+        it '#next' do
+          expect_template_result("{% paginate post.comments by 2 %}{{ paginate.next }}{% endpaginate %}", %|{"title"=>"Next &raquo;", "url"=>"/?page=3", "is_link"=>true}|, { 'post' => @post_drop })
+        end
+      end
+
       context 'last_page' do
         before(:all) { controller.params[:page] = 3 }
 
