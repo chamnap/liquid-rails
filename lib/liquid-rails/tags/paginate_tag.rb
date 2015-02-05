@@ -50,6 +50,7 @@ module Liquid
           pagination = {}
           pagination['collection']      = paginated_collection
           pagination['current_offset']  = (current_page-1) * @page_size
+          pagination['current_page']    = current_page
           pagination['page_size']       = @page_size
           pagination['pages']           = page_count
           pagination['items']           = paginated_collection.total_count
