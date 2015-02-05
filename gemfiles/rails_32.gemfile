@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',       '~> 3.2.21'
-gem 'rspec-rails', '~> 3.1.0'
+gem 'rspec-rails', '~> 3.2.0'
 gem 'guard-rspec', '~> 4.5.0'
 gem 'capybara',    '~> 2.4.1'
 gem 'pry-rails'
