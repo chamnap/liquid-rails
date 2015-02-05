@@ -20,6 +20,10 @@ module Liquid
       it 'translate with scope' do
         expect(::Liquid::Variable.new("'home' | translate: 'km', 'links'").render(context)).to eq('ទំព័រដើម')
       end
+
+      it 'translate with interpolation' do
+        expect(::Liquid::Variable.new("'welcome_name' | translate: 'en', nil, name: 'Jeremy'").render(context)).to eq('Welcome, Jeremy')
+      end
     end
   end
 end
