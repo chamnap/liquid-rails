@@ -60,9 +60,9 @@ module Liquid
           if part['is_link']
             html << %(<li><a href="#{part['url']}">#{part['title']}</a></li>)
           elsif part['title'].to_i == paginate['current_page'].to_i
-            html << %(<li class="active"><a href="#">#{part['title']}</a></li>)
+            html << %(<li class="active"><span>#{part['title']}</span></li>)
           else
-            html << %(<li><a href="#">#{part['title']}</a></li>)
+            html << %(<li class="disabled"><span>#{part['title']}</span></li>)
           end
         end
 
