@@ -135,6 +135,10 @@ describe CommentDrop do
 end
 ```
 
+## Contributors
+
+* [Radin Reth](https://github.com/radin-reth/)
+
 ## Authors
 
 * [Chamnap Chhorn](https://github.com/chamnap)
