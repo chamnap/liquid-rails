@@ -37,7 +37,7 @@ module Liquid
           end
 
           actual = Liquid::Template.parse(template).render!(context)
-          expect(actual.strip).to eq(expected.strip)
+          expect(actual.to_s.strip).to eq(expected.to_s.strip)
         end
       end
     end
