@@ -56,4 +56,12 @@ describe 'Request', type: :feature do
       expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis is a long section of text")
     end
   end
+
+  context 'render html within an erb template' do
+    it 'does not escape the html' do
+      visit '/erb_with_html_liquid_partial'
+
+      expect(page.body.strip).to eq("Application Layout\n<p>Partial Content</p>")
+    end
+  end
 end

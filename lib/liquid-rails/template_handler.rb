@@ -25,7 +25,7 @@ module Liquid
 
         liquid = Liquid::Template.parse(template)
         render_method = (::Rails.env.development? || ::Rails.env.test?) ? :render! : :render
-        liquid.send(render_method, assigns, filters: filters, registers: { view: @view, controller: @controller, helper: @helper })
+        liquid.send(render_method, assigns, filters: filters, registers: { view: @view, controller: @controller, helper: @helper }).html_safe
       end
 
       def filters
