@@ -17,6 +17,9 @@ class HomeController < ApplicationController
   def index_with_filter
   end
 
+  def erb_with_html_liquid_partial
+  end
+
   private
 
     def set_book
