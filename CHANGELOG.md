@@ -1,6 +1,14 @@
 # Overview
 
-## 0.1.1 - Not released
+## 0.1.2 - Not released
+
+### New Features
+
+* Use google analytics universal (Chamnap Chhorn)
+
+* Render liquid template as html_safe by default (Dan Kubb)
+
+## 0.1.1
 
 ### New Features
 
