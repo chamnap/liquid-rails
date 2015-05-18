@@ -1,6 +1,6 @@
 # Overview
 
-## 0.1.2 - Not released
+## 0.1.2
 
 ### New Features
 
