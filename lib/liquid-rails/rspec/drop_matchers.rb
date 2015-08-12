@@ -71,6 +71,7 @@ module Liquid
 
             association = associations[name]
             result = association.present? && association[:type] == options[:type]
+            result = result && association[:options][:scope] == options[:scope]           if options[:scope]
             result = result && association[:options][:with] == options[:with]             if options[:with]
             result = result && association[:options][:class_name] == options[:class_name] if options[:class_name]
 
@@ -79,6 +80,11 @@ module Liquid
 
           def with(class_name)
             @options[:with] = class_name
+            self
+          end
+
+          def scope(scope_name)
+            @options[:scope] = scope_name
             self
           end
 
