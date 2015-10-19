@@ -49,7 +49,7 @@ module Liquid
           html << %(<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">Next &raquo;</span></a></li>)
         end
 
-        html << '</nav></ul>'
+        html << '</ul></nav>'
         html.join(' ')
       end
     end
