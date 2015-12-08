@@ -38,8 +38,9 @@ module Liquid
 
         context.stack do
           collection = context[@collection_name]
+          @page_size = (@context['request.per_page'] || @page_size).to_i
           raise ::Liquid::ArgumentError.new("Cannot paginate array '#{@collection_name}'. Not found.") if collection.nil?
-
+          
           if collection.is_a? Array
             paginated_collection = Kaminari.paginate_array(collection.to_a).page(current_page).per(@page_size)
           elsif collection.respond_to?(:page) && collection.respond_to?(:per)
