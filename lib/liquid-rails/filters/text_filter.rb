@@ -7,6 +7,7 @@ module Liquid
                 :pluralize,
                 :word_wrap,
                 :simple_format,
+                :concat,
 
                 to: :h
 
