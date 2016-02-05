@@ -14,7 +14,6 @@ module Liquid
       it { should delegate(:pluralize).to(:h) }
       it { should delegate(:word_wrap).to(:h) }
       it { should delegate(:simple_format).to(:h) }
-      it { should delegate(:concat).to(:h) }
     end
   end
 end
