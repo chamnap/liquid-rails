@@ -3,7 +3,7 @@ script: "bundle exec rake spec"
 rvm:
   - 2.0.0
   - 2.1.5
-  - 2.2.0
+  - 2.2.5
 env:
   - CODECLIMATE_REPO_TOKEN=891d362268d07d6ff0f5534f92252b6195f6be8795054d3627643eb6314a8c9e
 gemfile:
@@ -15,7 +15,7 @@ notifications:
   email: false
 matrix:
   exclude:
-    - rvm: 2.2.0
+    - rvm: 2.2.5
       gemfile: gemfiles/rails_32.gemfile
 addons:
   code_climate:
