@@ -20,6 +20,10 @@ class HomeController < ApplicationController
   def erb_with_html_liquid_partial
   end
 
+  def index_with_rss
+    render format: 'rss', layout: false, content_type: 'application/rss+xml'
+  end
+
   private
 
     def set_book

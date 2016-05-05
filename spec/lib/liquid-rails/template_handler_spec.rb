@@ -64,4 +64,12 @@ describe 'Request', type: :feature do
       expect(page.body.strip).to eq("Application Layout\n<p>Partial Content</p>")
     end
   end
+  
+  context 'render RSS with an ERB template' do
+    it 'returns an rss content type' do
+      visit '/index_with_rss'
+
+      expect(page.response_headers['Content-Type']).to eq('application/rss+xml; charset=utf-8')
+    end
+  end
 end
