@@ -6,7 +6,7 @@ require 'active_support/concern'
 module Liquid
   module Rails
     autoload :TemplateHandler,  'liquid-rails/template_handler'
-    autoload :FileSystem,       'liquid-rails/file_system'
+    autoload :FileSystems,      'liquid-rails/file_systems'
 
     autoload :Drop,             'liquid-rails/drops/drop'
     autoload :CollectionDrop,   'liquid-rails/drops/collection_drop'

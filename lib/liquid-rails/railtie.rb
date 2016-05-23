@@ -8,7 +8,7 @@ module Liquid
       end
 
       mattr_accessor :template_file_system do
-        Liquid::Rails::FileSystem
+        Liquid::Rails::FileSystems::Local
       end
 
       initializer 'liquid-rails.register_template_handler' do |app|
