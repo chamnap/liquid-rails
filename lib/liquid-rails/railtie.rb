@@ -2,6 +2,7 @@ module Liquid
   module Rails
     class Railtie < ::Rails::Railtie
       config.app_generators.template_engine :liquid
+      config.liquid_rails = ActiveSupport::OrderedOptions.new
 
       initializer 'liquid-rails.register_template_handler' do |app|
         ActiveSupport.on_load(:action_view) do
@@ -18,6 +19,14 @@ module Liquid
         [:active_record, :mongoid].each do |orm|
           ActiveSupport.on_load orm do
             Liquid::Rails.setup_drop self
+          end
+        end
+      end
+
+      config.after_initialize do
+        Liquid::Rails.configure do |liquid_config|
+          config.liquid_rails.each_pair do |key, value|
+            liquid_config[key] = value
           end
         end
       end

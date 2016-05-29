@@ -11,10 +11,16 @@ module Liquid
     autoload :Drop,             'liquid-rails/drops/drop'
     autoload :CollectionDrop,   'liquid-rails/drops/collection_drop'
 
+    Configuration = Struct.new(:render_method).new
+
     def self.setup_drop(base)
       base.class_eval do
         include Liquid::Rails::Droppable
       end
+    end
+
+    def self.configure
+      yield(Configuration)
     end
   end
 end
