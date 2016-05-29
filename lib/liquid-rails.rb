@@ -11,7 +11,7 @@ module Liquid
     autoload :Drop,             'liquid-rails/drops/drop'
     autoload :CollectionDrop,   'liquid-rails/drops/collection_drop'
 
-    Configuration = Struct.new(:render_method).new
+    Configuration = Struct.new(:render_method, :parse_template).new
 
     def self.setup_drop(base)
       base.class_eval do
