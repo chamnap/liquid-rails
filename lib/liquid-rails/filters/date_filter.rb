@@ -7,11 +7,9 @@ module Liquid
 
                 to: :h
 
-      private
-
-        def h
-          @h ||= @context.registers[:view]
-        end
+      def h
+        @h ||= @context.registers[:view]
+      end
     end
   end
 end
