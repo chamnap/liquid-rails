@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :set_book
+  before_action :set_book
 
   def index_witout_filter
   end

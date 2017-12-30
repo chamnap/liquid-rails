@@ -8,7 +8,7 @@ module Liquid
         included do
           metadata[:type] = :tag
 
-          before(:all) { setup_view_and_controller }
+          before(:each) { setup_view_and_controller }
         end
       end
     end

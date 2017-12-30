@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get  '/index_partial',                to: 'home#index_partial'
   get  '/index_partial_with_full_path', to: 'home#index_partial_with_full_path'
 
-  get '/erb_with_html_liquid_partial',  to: 'home#erb_with_html_liquid_partial'
+  get  '/index_with_rss',               to: 'home#index_with_rss', defaults: { format: 'rss' }
 
-  get '/foospace/bar/index_partial',    to: 'foospace/bar#index_partial'
+  get  '/erb_with_html_liquid_partial', to: 'home#erb_with_html_liquid_partial'
+
+  get  '/foospace/bar/index_partial',   to: 'foospace/bar#index_partial'
 end

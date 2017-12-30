@@ -1,5 +1,13 @@
 # Overview
 
+## 0.2.0
+
+### Resolved Issues
+
+* Fix `Content-Type` issue
+* Support from Liquid v4, Rails v5, and Kaminari v1 and up
+* Use `ActionView::Resolver` as Liquid filesystem (lowang, streppa-ent)
+
 ## 0.1.4
 
 ### Resolved Issues
