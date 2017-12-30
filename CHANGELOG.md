@@ -1,5 +1,12 @@
 # Overview
 
+## 0.1.4
+
+### Resolved Issues
+
+* Fix Filter overrides registered public methods as non public: h
+* Support Liquid v3.0.6, Rails belows 5, and Kaminari below v1.0.0
+
 ## 0.1.2
 
 ### New Features

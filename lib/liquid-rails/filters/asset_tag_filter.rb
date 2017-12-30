@@ -11,12 +11,12 @@ module Liquid
                 :stylesheet_link_tag,
                 :video_tag,
 
-                to: :h
+                to: :__h__
 
       private
 
-        def h
-          @h ||= @context.registers[:view]
+        def __h__
+          @context.registers[:view]
         end
     end
   end
