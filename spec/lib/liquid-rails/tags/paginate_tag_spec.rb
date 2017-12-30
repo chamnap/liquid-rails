@@ -57,8 +57,7 @@ module Liquid
       end
 
       context 'second_page' do
-        before(:all) { controller.params[:page] = 2 }
-        after(:all)  { controller.params[:page] = nil }
+        before(:each) { controller.params[:page] = 2 }
 
         it '#current_page' do
           expect_template_result("{% paginate post.comments by 2 %}{{ paginate.current_page }}{% endpaginate %}", '2', { 'post' => @post_drop })
@@ -74,8 +73,7 @@ module Liquid
       end
 
       context 'last_page' do
-        before(:all) { controller.params[:page] = 3 }
-        after(:all)  { controller.params[:page] = nil }
+        before(:each) { controller.params[:page] = 3 }
 
         it 'returns the page size' do
           expect_template_result("{% paginate post.comments by 2 %}{{ paginate.collection | size }}{% endpaginate %}", '1', { 'post' => @post_drop })
@@ -119,7 +117,7 @@ module Liquid
       end
 
       context 'default_pagination' do
-        after(:all)  { controller.params[:page] = nil }
+        after(:each)  { controller.params[:page] = nil }
 
         it 'is in the first_page' do
           controller.params[:page] = 1
@@ -138,7 +136,7 @@ module Liquid
       end
 
       context 'bootstrap_pagination' do
-        after(:all)  { controller.params[:page] = nil }
+        after(:each)  { controller.params[:page] = nil }
 
         it 'is in the first_page' do
           controller.params[:page] = 1

@@ -21,7 +21,7 @@ module Liquid
             end
           }
 
-          before(:all)  { setup_view_and_controller }
+          before(:each) { setup_view_and_controller }
           before(:each) { subject.context = context }
         end
       end
