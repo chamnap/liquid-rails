@@ -113,6 +113,18 @@ Check out more [examples](https://github.com/yoolk/liquid-rails/blob/master/spec
 
 It works for any ORMs. The PORO should include `Liquid::Rails::Droppable`. That's all you need to do to have your POROs supported.
 
+### Caching Compiled Templates
+
+In order to cache compiled templates, you may do something like the following in your application.rb (using the excellent `concurrent-ruby` gem):
+```
+cached_templates = Concurrent::Map.new do |m, template|
+  Rails.logger.info "Compiling Template"
+  m[template] = ::Liquid::Template.parse(template)
+end
+app.config.liquid_rails.render_method = :render!
+app.config.liquid_rails.parse_template = lambda { |template| cached_templates[template] }
+```
+
 ### RSpec
 
 In spec_helper.rb, you'll need to require the matchers:

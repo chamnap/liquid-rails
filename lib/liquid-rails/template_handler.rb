@@ -12,6 +12,16 @@ module Liquid
         @helper     = ActionController::Base.helpers
       end
 
+      def render_method
+        return Configuration.render_method if Configuration.render_method
+        (::Rails.env.development? || ::Rails.env.test?) ? :render! : :render
+      end
+
+      def parse(template)
+        return Configuration.parse_template.call(template) if Configuration.parse_template
+        Liquid::Template.parse(template)
+      end
+
       def render(template, local_assigns={})
         @view.controller.headers['Content-Type'] ||= 'text/html; charset=utf-8'
 
@@ -23,8 +33,7 @@ module Liquid
         assigns['content_for_layout'] = @view.content_for(:layout) if @view.content_for?(:layout)
         assigns.merge!(local_assigns.stringify_keys)
 
-        liquid = Liquid::Template.parse(template)
-        render_method = (::Rails.env.development? || ::Rails.env.test?) ? :render! : :render
+        liquid = parse(template)
         liquid.send(render_method, assigns, filters: filters, registers: { view: @view, controller: @controller, helper: @helper }).html_safe
       end
 
