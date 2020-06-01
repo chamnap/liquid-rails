@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Liquid
   module Rails
-    describe Drop do
+    describe Drop, type: :request do
       let(:model)         { ::Model.new }
       let(:profile)       { Profile.new(name: 'Name 1', description: 'Description 1', comments: 'Comments 1') }
       let(:profile_drop)  { ProfileDrop.new(profile) }
