@@ -4,9 +4,10 @@ module Liquid
   module Rails
     describe TranslateFilter do
       let(:context) { ::Liquid::Context.new }
+      let(:controller) { ActionController::Base.new }
 
       before do
-        context.registers[:view] = ActionView::Base.new(ActionView::LookupContext.new(''))
+        context.registers[:view] = ActionView::Base.new(ActionView::LookupContext.new(''), {}, controller)
       end
 
       it 'translate with default locale' do
