@@ -1,5 +1,13 @@
 # Overview
 
+## Unreleased
+
+### New Features
+* Added support for Rails v6.0 and v6.1
+
+### Breaking changed
+* Dropped support for Rails v5.*
+
 ## 0.2.0
 
 ### Resolved Issues
