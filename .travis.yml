@@ -5,10 +5,8 @@ rvm:
 env:
   - CODECLIMATE_REPO_TOKEN=891d362268d07d6ff0f5534f92252b6195f6be8795054d3627643eb6314a8c9e
 gemfile:
-  - gemfiles/rails_50.gemfile
-  - gemfiles/rails_51.gemfile
-  - gemfiles/rails_52.gemfile
   - gemfiles/rails_60.gemfile
+  - gemfiles/rails_61.gemfile
 notifications:
   email: false
 addons:
