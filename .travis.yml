@@ -2,6 +2,7 @@ language: ruby
 script: "bundle exec rake spec"
 rvm:
   - 2.6.4
+  - 2.7.0
 env:
   - CODECLIMATE_REPO_TOKEN=891d362268d07d6ff0f5534f92252b6195f6be8795054d3627643eb6314a8c9e
 gemfile:
