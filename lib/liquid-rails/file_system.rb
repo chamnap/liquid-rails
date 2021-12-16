@@ -14,13 +14,23 @@ module Liquid
         name    = template_path.split('/').last
         prefix  = template_path.split('/')[0...-1].join('/')
 
-        result  = view.view_paths.find_all(name, prefix, true, lookup_details, nil, {})
+        result  = find_all_templates(name, prefix)
         raise FileSystemError, "No such template '#{template_path}'" unless result.present?
 
         result.first.source
       end
 
       private
+
+      if ::Rails::VERSION::MAJOR < 7
+        def find_all_templates(name, prefix)
+          view.view_paths.find_all(name, prefix, true, lookup_details)
+        end
+      else
+        def find_all_templates(name, prefix)
+          view.view_paths.find_all(name, prefix, true, lookup_details, nil, {})
+        end
+      end
 
       attr_reader :view
 
