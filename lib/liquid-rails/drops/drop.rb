@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     class Drop < ::Liquid::Drop
-
       class << self
-        attr_accessor :_attributes
-        attr_accessor :_associations
+        attr_accessor :_attributes, :_associations
       end
 
       def self.inherited(base)
@@ -29,22 +29,20 @@ module Liquid
       def self.drop_class_for(resource)
         if resource.respond_to?(:to_ary)
           Liquid::Rails::CollectionDrop
+        elsif self == Liquid::Rails::Drop
+          resource.drop_class || Liquid::Rails::Drop
         else
-          if self == Liquid::Rails::Drop
-            resource.drop_class || Liquid::Rails::Drop
-          else
-            self
-          end
+          self
         end
       end
 
       # Create a drop instance when it cannot be inferred.
-      def self.dropify(resource, options={})
+      def self.dropify(resource, options = {})
         drop_class = if options[:class_name]
-          options[:class_name].constantize
-        else
-          drop_class_for(resource)
-        end
+                       options[:class_name].constantize
+                     else
+                       drop_class_for(resource)
+                     end
 
         drop_class.new(resource, options.except(:class_name))
       end
@@ -75,12 +73,12 @@ module Liquid
             instance_variable_set("@_#{attr}", drop_instance)
           end
 
-          self._associations[attr] = { type: type, options: options }
+          _associations[attr] = { type: type, options: options }
         end
       end
 
       # Wraps an object in a new instance of the drop.
-      def initialize(object, options={})
+      def initialize(object, _options = {})
         @object = object
       end
 
@@ -90,11 +88,11 @@ module Liquid
         end
       end
 
-      def as_json(options={})
+      def as_json(options = {})
         attributes.as_json(options)
       end
 
-      def to_json(options={})
+      def to_json(options = {})
         as_json.to_json(options)
       end
 
@@ -108,7 +106,7 @@ module Liquid
 
       protected
 
-        attr_reader :object
+      attr_reader :object
     end
   end
 end

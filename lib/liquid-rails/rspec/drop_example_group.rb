@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     module Rspec
@@ -9,17 +11,17 @@ module Liquid
         included do
           metadata[:type] = :drop
 
-          subject {
+          subject do
             if described_class.ancestors.include?(Liquid::Rails::Drop)
               begin
                 described_class.new(double)
-              rescue
+              rescue StandardError
                 described_class.new
               end
             else
               described_class.new([])
             end
-          }
+          end
 
           before(:each) { setup_view_and_controller }
           before(:each) { subject.context = context }
@@ -31,7 +33,7 @@ end
 
 RSpec.configure do |config|
   if RSpec::Core::Version::STRING.starts_with?('3')
-    config.include Liquid::Rails::Rspec::DropExampleGroup, type: :drop, file_path: %r(spec/drops)
+    config.include Liquid::Rails::Rspec::DropExampleGroup, type: :drop, file_path: %r{spec/drops}
   else
     config.include Liquid::Rails::Rspec::DropExampleGroup, type: :drop, example_group: { file_path: %r{spec/drops} }
   end

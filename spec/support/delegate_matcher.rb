@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # RSpec matcher to spec delegations.
 # Gist Version https://gist.github.com/joeytheman/0fe021821e4c62f552ce
 #
@@ -27,9 +29,10 @@ RSpec::Matchers.define :delegate do |method|
         @delegator.instance_variable_set(@to, old_value)
       end
     elsif @delegator.respond_to?(@to, true)
-      unless [0,-1].include?(@delegator.method(@to).arity)
+      unless [0, -1].include?(@delegator.method(@to).arity)
         raise "#{@delegator}'s' #{@to} method does not have zero or -1 arity (it expects parameters)"
       end
+
       allow(@delegator).to receive(@to).and_return(receiver_double(method))
       @delegator.send(@method) == :called
     else
@@ -41,11 +44,11 @@ RSpec::Matchers.define :delegate do |method|
     "delegate :#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
   end
 
-  failure_message do |text|
+  failure_message do |_text|
     "expected #{@delegator} to delegate :#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
   end
 
-  failure_message_when_negated do |text|
+  failure_message_when_negated do |_text|
     "expected #{@delegator} not to delegate :#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
   end
 

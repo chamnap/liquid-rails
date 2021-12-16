@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Model
   include Liquid::Rails::Droppable
 
-  def initialize(hash={})
+  def initialize(hash = {})
     @attributes = hash
   end
 
@@ -9,18 +11,19 @@ class Model
     @attributes[:id] || @attributes['id'] || object_id
   end
 
-  def respond_to?(method, include_private=false)
+  def respond_to?(method, include_private = false)
     return true if @attributes.key?(method)
+
     super
   end
 
-  def respond_to_missing?(method, include_private=false)
+  def respond_to_missing?(method, include_private = false)
     @attributes.key?(method) || super
   end
 
   def method_missing(meth, *args)
     if meth.to_s =~ /^(.*)=$/
-      @attributes[$1.to_sym] = args[0]
+      @attributes[Regexp.last_match(1).to_sym] = args[0]
     elsif @attributes.key?(meth)
       @attributes[meth]
     else

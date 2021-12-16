@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     module Rspec
@@ -17,7 +19,7 @@ end
 
 RSpec.configure do |config|
   if RSpec::Core::Version::STRING.starts_with?('3')
-    config.include Liquid::Rails::Rspec::TagExampleGroup, type: :tag, file_path: %r(spec/tags)
+    config.include Liquid::Rails::Rspec::TagExampleGroup, type: :tag, file_path: %r{spec/tags}
   else
     config.include Liquid::Rails::Rspec::TagExampleGroup, type: :tag, example_group: { file_path: %r{spec/tags} }
   end

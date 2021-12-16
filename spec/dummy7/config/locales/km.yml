@@ -1,0 +1,5 @@
+km:
+  welcome: 'សូមស្វាគមន៍'
+  welcome_name: 'សូមស្វាគមន៍ %{name}'
+  links:
+    home: 'ទំព័រដើម'

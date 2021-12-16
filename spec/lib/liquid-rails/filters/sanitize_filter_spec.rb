@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 class SanitizeFilterKlass
@@ -9,8 +11,8 @@ module Liquid
     describe SanitizeFilter do
       subject { SanitizeFilterKlass.new }
 
-      it { should delegate(:strip_tags).to(:__h__) }
-      it { should delegate(:strip_links).to(:__h__) }
+      it { is_expected.to delegate(:strip_tags).to(:__h__) }
+      it { is_expected.to delegate(:strip_links).to(:__h__) }
     end
   end
 end

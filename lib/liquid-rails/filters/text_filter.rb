@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     module TextFilter
       delegate \
-                :highlight,
-                :excerpt,
-                :pluralize,
-                :word_wrap,
-                :simple_format,
-
-                to: :__h__
+        :highlight,
+        :excerpt,
+        :pluralize,
+        :word_wrap,
+        :simple_format,
+        to: :__h__
 
       # right justify and padd a string
       def rjust(input, integer, padstr = '')
@@ -36,9 +37,9 @@ module Liquid
 
       private
 
-        def __h__
-          @context.registers[:view]
-        end
+      def __h__
+        @context.registers[:view]
+      end
     end
   end
 end

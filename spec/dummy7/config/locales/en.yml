@@ -1,0 +1,5 @@
+en:
+  welcome: 'Welcome everyone!'
+  welcome_name: 'Welcome, %{name}'
+  links:
+    home: 'Home'

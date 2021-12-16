@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Returns a Google Analytics tag.
 #
 # Usage:
@@ -7,19 +9,20 @@
 module Liquid
   module Rails
     class GoogleAnalyticsTag < ::Liquid::Tag
-      Syntax = /(#{::Liquid::QuotedFragment}+)?/
+      Syntax = /(#{::Liquid::QuotedFragment}+)?/.freeze
 
       def initialize(tag_name, markup, tokens)
         if markup =~ Syntax
-          @account_id = $1.gsub('\'', '')
+          @account_id = Regexp.last_match(1).gsub('\'', '')
         else
-          raise ::Liquid::SyntaxError.new("Syntax Error in 'google_analytics_tag' - Valid syntax: google_analytics_tag <account_id>")
+          raise ::Liquid::SyntaxError,
+                "Syntax Error in 'google_analytics_tag' - Valid syntax: google_analytics_tag <account_id>"
         end
 
         super
       end
 
-      def render(context)
+      def render(_context)
         %{
         <script type="text/javascript">
 

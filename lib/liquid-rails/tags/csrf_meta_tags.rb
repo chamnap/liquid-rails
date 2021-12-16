@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     class CsrfMetaTags < ::Liquid::Tag

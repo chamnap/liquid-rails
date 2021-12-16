@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 class AssetTagFilterKlass
@@ -9,14 +11,14 @@ module Liquid
     describe AssetTagFilter do
       subject { AssetTagFilterKlass.new }
 
-      it { should delegate(:audio_tag).to(:__h__) }
-      it { should delegate(:auto_discovery_link_tag).to(:__h__) }
-      it { should delegate(:favicon_link_tag).to(:__h__) }
-      it { should delegate(:image_alt).to(:__h__) }
-      it { should delegate(:image_tag).to(:__h__) }
-      it { should delegate(:javascript_include_tag).to(:__h__) }
-      it { should delegate(:stylesheet_link_tag).to(:__h__) }
-      it { should delegate(:video_tag).to(:__h__) }
+      it { is_expected.to delegate(:audio_tag).to(:__h__) }
+      it { is_expected.to delegate(:auto_discovery_link_tag).to(:__h__) }
+      it { is_expected.to delegate(:favicon_link_tag).to(:__h__) }
+      it { is_expected.to delegate(:image_alt).to(:__h__) }
+      it { is_expected.to delegate(:image_tag).to(:__h__) }
+      it { is_expected.to delegate(:javascript_include_tag).to(:__h__) }
+      it { is_expected.to delegate(:stylesheet_link_tag).to(:__h__) }
+      it { is_expected.to delegate(:video_tag).to(:__h__) }
     end
   end
 end

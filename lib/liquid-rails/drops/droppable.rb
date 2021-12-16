@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     module Droppable
@@ -6,7 +8,7 @@ module Liquid
       def to_liquid
         drop_class.new(self)
       end
-      alias_method :dropify, :to_liquid
+      alias dropify to_liquid
 
       def drop_class
         self.class.drop_class
@@ -14,7 +16,7 @@ module Liquid
 
       module ClassMethods
         def drop_class
-          "#{self.name}Drop".safe_constantize
+          "#{name}Drop".safe_constantize
         end
       end
     end

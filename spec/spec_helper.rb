@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['CI'] || ENV['COVERAGE']
   require 'coveralls'
   require 'simplecov'
@@ -18,7 +20,13 @@ end
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+require 'rails/version'
+if ::Rails::VERSION::MAJOR == 6
+  require File.expand_path('dummy6/config/environment.rb',  __dir__)
+else
+  require File.expand_path('dummy7/config/environment.rb',  __dir__)
+end
+
 require 'pry'
 require 'pry-byebug'
 require 'liquid-rails'
@@ -32,14 +40,12 @@ Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
 require 'fixtures/poro'
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
   config.include Capybara::RSpecMatchers
-  if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR < 2
-    config.include ActiveSupport::Testing::SetupAndTeardown
-  end
+  config.include ActiveSupport::Testing::SetupAndTeardown if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR < 2
   config.include ActionController::TestCase::Behavior
 end

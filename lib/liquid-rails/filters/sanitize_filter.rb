@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     module SanitizeFilter
       delegate \
-                :strip_tags,
-                :strip_links,
-
-                to: :__h__
+        :strip_tags,
+        :strip_links,
+        to: :__h__
 
       private
 
-        def __h__
-          @context.registers[:view]
-        end
+      def __h__
+        @context.registers[:view]
+      end
     end
   end
 end

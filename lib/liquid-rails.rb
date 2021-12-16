@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'liquid-rails/version'
 require 'liquid'
 require 'kaminari'
@@ -20,4 +22,4 @@ module Liquid
 end
 
 require 'liquid-rails/railtie' if defined?(Rails)
-Dir[File.dirname(__FILE__) + '/liquid-rails/{filters,tags,drops}/*.rb'].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/liquid-rails/{filters,tags,drops}/*.rb"].sort.each { |f| require f }

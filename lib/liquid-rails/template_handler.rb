@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     class TemplateHandler
-
-      def self.call(template, source=nil)
+      def self.call(template, source = nil)
         source ||= template.source
         "Liquid::Rails::TemplateHandler.new(self).render(#{source.inspect}, local_assigns)"
       end
@@ -13,16 +14,16 @@ module Liquid
         @helper     = ActionController::Base.helpers
       end
 
-      def render(template, local_assigns={})
+      def render(template, local_assigns = {})
         assigns = if @controller.respond_to?(:liquid_assigns, true)
-          @controller.send(:liquid_assigns)
-        else
-          @view.assigns
-        end
+                    @controller.send(:liquid_assigns)
+                  else
+                    @view.assigns
+                  end
         assigns['content_for_layout'] = @view.content_for(:layout) if @view.content_for?(:layout)
         assigns.merge!(local_assigns.stringify_keys)
 
-        liquid      = Liquid::Template.parse(template)
+        liquid = Liquid::Template.parse(template)
         liquid.send(render_method, assigns, filters: filters, registers: registers).html_safe
       end
 
@@ -48,7 +49,7 @@ module Liquid
       end
 
       def render_method
-        (::Rails.env.development? || ::Rails.env.test?) ? :render! : :render
+        ::Rails.env.development? || ::Rails.env.test? ? :render! : :render
       end
     end
   end

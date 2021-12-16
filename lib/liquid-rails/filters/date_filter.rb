@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     module DateFilter
       delegate \
-                :distance_of_time_in_words,
-                :time_ago_in_words,
-
-                to: :__h__
+        :distance_of_time_in_words,
+        :time_ago_in_words,
+        to: :__h__
 
       private
 
-        def __h__
-          @context.registers[:view]
-        end
+      def __h__
+        @context.registers[:view]
+      end
     end
   end
 end

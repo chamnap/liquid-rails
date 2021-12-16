@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Request', type: :feature do
@@ -48,7 +50,7 @@ describe 'Request', type: :feature do
   end
 
   describe 'filter' do
-    context 'render with filter' do
+    context 'when rendering with filter' do
       it 'renders with helper' do
         visit '/index_with_filter'
 
@@ -64,7 +66,7 @@ describe 'Request', type: :feature do
   end
 
   describe 'erb' do
-    context 'render html within an erb template' do
+    context 'when rendering html within an erb template' do
       it 'does not escape the html' do
         visit '/erb_with_html_liquid_partial'
 
@@ -74,7 +76,7 @@ describe 'Request', type: :feature do
   end
 
   describe 'content_type' do
-    context 'render RSS with an ERB template' do
+    context 'when rendering RSS with an ERB template' do
       it 'returns an rss content type' do
         visit '/index_with_rss.rss'
 

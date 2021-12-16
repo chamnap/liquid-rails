@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 class DateFilterKlass
@@ -9,8 +11,8 @@ module Liquid
     describe DateFilter do
       subject { DateFilterKlass.new }
 
-      it { should delegate(:distance_of_time_in_words).to(:__h__) }
-      it { should delegate(:time_ago_in_words).to(:__h__) }
+      it { is_expected.to delegate(:distance_of_time_in_words).to(:__h__) }
+      it { is_expected.to delegate(:time_ago_in_words).to(:__h__) }
     end
   end
 end

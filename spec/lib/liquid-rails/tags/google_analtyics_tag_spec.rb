@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Liquid
@@ -9,7 +11,7 @@ module Liquid
         result = Liquid::Template.parse("{% google_analytics_tag 'UA-XXXXX-X' %}").render(context)
 
         expect(result).to eq(
-        %{
+          %{
         <script type="text/javascript">
 
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

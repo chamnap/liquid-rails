@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'liquid/file_system'
 
 module Liquid
@@ -15,7 +17,7 @@ module Liquid
         prefix  = template_path.split('/')[0...-1].join('/')
 
         result  = find_all_templates(name, prefix)
-        raise FileSystemError, "No such template '#{template_path}'" unless result.present?
+        raise FileSystemError, "No such template '#{template_path}'" if result.blank?
 
         result.first.source
       end
@@ -37,10 +39,10 @@ module Liquid
 
       def lookup_details
         {
-          locale:   [view.locale, :en],
-          formats:  view.formats,
+          locale: [view.locale, :en],
+          formats: view.formats,
           variants: [],
-          handlers: [:liquid],
+          handlers: [:liquid]
           # versions: []
         }
       end

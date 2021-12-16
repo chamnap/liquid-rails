@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Liquid
   module Rails
     class CollectionDrop < ::Liquid::Drop
-
       class << self
         attr_accessor :_scopes
       end
@@ -18,17 +19,21 @@ module Liquid
             value = instance_variable_get("@_#{scope_name}")
             return value if value
 
-            raise ArgumentError, "#{objects.class.name} doesn't define scope: #{scope_name}" unless objects.respond_to?(scope_name)
+            unless objects.respond_to?(scope_name)
+              raise ArgumentError,
+                    "#{objects.class.name} doesn't define scope: #{scope_name}"
+            end
+
             instance_variable_set("@_#{scope_name}", self.class.new(objects.send(scope_name)))
           end
         end
       end
 
       array_methods = Array.instance_methods - Object.instance_methods
-      delegate *array_methods, to: :dropped_collection
+      delegate(*array_methods, to: :dropped_collection)
       delegate :total_count, :total_pages, to: :objects
 
-      def initialize(objects, options={})
+      def initialize(objects, options = {})
         options.assert_valid_keys(:with, :scope)
 
         @objects         = options[:scope].nil? ? objects : objects.send(options[:scope])
@@ -48,9 +53,9 @@ module Liquid
       end
 
       def kind_of?(klass)
-        dropped_collection.kind_of?(klass) || super
+        dropped_collection.is_a?(klass) || super
       end
-      alias_method :is_a?, :kind_of?
+      alias is_a? kind_of?
 
       ## :[] is invoked by parser before the actual. However, this method has the same name as array method.
       ## Override this, so it will work for both cases.
@@ -76,16 +81,16 @@ module Liquid
 
       protected
 
-        attr_reader :objects
+      attr_reader :objects
 
-        def drop_class
-          @drop_class ||= @drop_class_name.is_a?(String) ? @drop_class_name.safe_constantize : @drop_class_name
-        end
+      def drop_class
+        @drop_class ||= @drop_class_name.is_a?(String) ? @drop_class_name.safe_constantize : @drop_class_name
+      end
 
-        def drop_item(item)
-          liquid_drop_class = drop_class || item.drop_class
-          liquid_drop_class.new(item)
-        end
+      def drop_item(item)
+        liquid_drop_class = drop_class || item.drop_class
+        liquid_drop_class.new(item)
+      end
     end
   end
 end

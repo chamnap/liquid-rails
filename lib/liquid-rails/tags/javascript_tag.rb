@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Returns a JavaScript tag with the content inside.
 #
 # Usage:

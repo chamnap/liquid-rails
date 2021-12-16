@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # It works similar to Rails #content_for.
 # Calling #content_for stores a block of markup in an identifier for later use.
 # In order to access this stored content in other templates or the layout, you would pass the identifier as an argument to content_for.
@@ -16,16 +18,16 @@
 module Liquid
   module Rails
     class ContentForTag < ::Liquid::Block
-      Syntax = /(#{::Liquid::QuotedFragment}+)\s*(flush\s*(true|false))?/
+      Syntax = /(#{::Liquid::QuotedFragment}+)\s*(flush\s*(true|false))?/.freeze
 
       def initialize(tag_name, markup, context)
         super
 
         if markup =~ Syntax
-          @flush = $3
-          @identifier = $1.gsub('\'', '')
+          @flush = Regexp.last_match(3)
+          @identifier = Regexp.last_match(1).gsub('\'', '')
         else
-          raise SyntaxError.new("Syntax Error - Valid syntax: {% content_for [name] %}")
+          raise SyntaxError, 'Syntax Error - Valid syntax: {% content_for [name] %}'
         end
       end
 
@@ -36,8 +38,8 @@ module Liquid
         if ::Rails::VERSION::MAJOR == 3 && ::Rails::VERSION::MINOR == 2
           if @flush == 'true'
             @context.registers[:view].view_flow.set(@identifier, content) if content
-          else
-            @context.registers[:view].view_flow.append(@identifier, content) if content
+          elsif content
+            @context.registers[:view].view_flow.append(@identifier, content)
           end
         else
           options = @flush == 'true' ? { flush: true } : {}
@@ -52,15 +54,15 @@ end
 module Liquid
   module Rails
     class YieldTag < ::Liquid::Tag
-      Syntax = /(#{::Liquid::QuotedFragment}+)/
+      Syntax = /(#{::Liquid::QuotedFragment}+)/.freeze
 
       def initialize(tag_name, markup, context)
         super
 
         if markup =~ Syntax
-          @identifier = $1.gsub('\'', '')
+          @identifier = Regexp.last_match(1).gsub('\'', '')
         else
-          raise SyntaxError.new("Syntax Error - Valid syntax: {% yield [name] %}")
+          raise SyntaxError, 'Syntax Error - Valid syntax: {% yield [name] %}'
         end
       end
 

@@ -1,0 +1,24 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'spec/dummy6'
+    - 'spec/dummy7'
+  TargetRubyVersion: 2.7
+
+Layout/LineLength:
+  Exclude:
+    - 'spec/lib/**/*.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/lib/**/*.rb'
+    - 'spec/support/*.rb'
+
+Naming/FileName:
+  Exclude:
+    - 'lib/liquid-rails.rb'
+
+Style/Documentation:
+  Enabled: false

@@ -20,5 +20,5 @@ tmp
 *.o
 *.a
 mkmf.log
-spec/dummy/log/*
+spec/dummy*/log/*
 gemfiles/*.lock
