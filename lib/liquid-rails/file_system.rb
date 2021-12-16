@@ -23,6 +23,7 @@ module Liquid
       private
 
       if ::Rails::VERSION::MAJOR < 7
+        ActiveSupport::Deprecation.warn('liquid-rails is moving to Rails 7.0')
         def find_all_templates(name, prefix)
           view.view_paths.find_all(name, prefix, true, lookup_details)
         end
