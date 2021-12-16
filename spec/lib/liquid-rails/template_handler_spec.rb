@@ -20,7 +20,7 @@ describe 'Request', type: :feature do
       it 'renders with layout' do
         visit '/index_with_layout'
 
-        expect(page.body).to eq("Application Layout\nLiquid on Rails")
+        expect(page.body).to eq("Application Layout\nLiquid on Rails\n")
       end
     end
   end
@@ -30,13 +30,13 @@ describe 'Request', type: :feature do
       it 'no full path for the current controller' do
         visit '/index_partial'
 
-        expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nHome Partial\nShared Partial")
+        expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nHome Partial\nShared Partial\n")
       end
 
       it 'full path' do
         visit '/index_partial_with_full_path'
 
-        expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nHome Partial\nShared Partial")
+        expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nHome Partial\nShared Partial\n")
       end
 
       it 'respects namespace of original template for partials path' do
@@ -52,13 +52,13 @@ describe 'Request', type: :feature do
       it 'renders with helper' do
         visit '/index_with_filter'
 
-        expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis...")
+        expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis...\n")
       end
 
       it 'renders with helper' do
         visit '/index_without_filter'
 
-        expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis is a long section of text")
+        expect(page.body).to eq("Application Layout\nLiquid on Rails\nThis is a long section of text\n\n")
       end
     end
   end
@@ -97,13 +97,13 @@ describe 'Request', type: :feature do
     it 'no full path for the current controller' do
       visit '/index_partial?prepend_view_path=true'
 
-      expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nVendor Theme Home Partial\n\nVendor Theme Shared Partial\n")
+      expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nVendor Theme Home Partial\n\nVendor Theme Shared Partial\n\n")
     end
 
     it 'full path' do
       visit '/index_partial_with_full_path?prepend_view_path=true'
 
-      expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nVendor Theme Home Partial\n\nVendor Theme Shared Partial\n")
+      expect(page.body).to eq("Application Layout\nLiquid on Rails\n\nVendor Theme Home Partial\n\nVendor Theme Shared Partial\n\n")
     end
 
     it 'respects namespace of original template for partials path' do

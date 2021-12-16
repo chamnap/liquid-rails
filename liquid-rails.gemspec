@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rspec', '~> 4.7'
   spec.add_development_dependency 'capybara',    '~> 3.34'
   spec.add_development_dependency 'pry-rails',   '~> 0.3'
+  spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'coveralls',   '~> 0.8'
   spec.add_development_dependency 'simplecov',   '~> 0.16'
   spec.add_development_dependency 'sqlite3',     '~> 1.4'
