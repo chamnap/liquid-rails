@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'rails',    ">= 6.0"
+  spec.add_dependency 'rails',    ">= 7.0", "< 8.0"
   spec.add_dependency 'liquid',   '~> 4.0'
   spec.add_dependency 'kaminari', '~> 1.2'
 
@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rspec', '~> 4.7'
   spec.add_development_dependency 'capybara',    '~> 3.34'
   spec.add_development_dependency 'pry-rails',   '~> 0.3'
+  spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'coveralls',   '~> 0.8'
   spec.add_development_dependency 'simplecov',   '~> 0.16'
   spec.add_development_dependency 'sqlite3',     '~> 1.4'
