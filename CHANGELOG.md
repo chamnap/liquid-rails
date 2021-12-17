@@ -3,9 +3,10 @@
 ## Unreleased
 
 ### New Features
-* Added support for Rails v6.0 and v6.1
+* Added support for Rails v6.0, v6.1 and v7.0
+* Migrated to Liquid 5
 
-### Breaking changed
+### Breaking changes
 * Dropped support for Rails v5.*
 
 ## 0.2.0
