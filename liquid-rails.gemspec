@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'kaminari', '~> 1.2'
-  spec.add_dependency 'liquid',   '~> 4.0'
+  spec.add_dependency 'liquid',   '~> 5.0'
   spec.add_dependency 'rails',    '>= 6.0', '< 8.0'
 
   spec.add_development_dependency 'capybara',    '~> 3.34'
